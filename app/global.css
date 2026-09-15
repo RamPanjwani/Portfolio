@@ -1,156 +1,709 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
 
-::selection {
-  background-color: #47a3f3;
-  color: #fefefe;
+@theme {
+  --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Strictly enforce 1 font (Manrope) across entire repo */
+*, *::before, *::after,
+html, body,
+h1, h2, h3, h4, h5, h6,
+p, span, a, div, li, ul, ol,
+button, input, textarea, select,
+pre, code, kbd, samp,
+.font-mono, .font-sans, .font-serif {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 :root {
-  --background: #dfc5a4;
-  --foreground: black;
-  --sh-class: #2d5e9d;
-  --sh-identifier: #354150;
-  --sh-sign: #8996a3;
-  --sh-string: #007f7a;
-  --sh-keyword: #e02518;
-  --sh-comment: #a19595;
-  --sh-jsxliterals: #6266d1;
-  --sh-property: #e25a1c;
-  --sh-entity: #e25a1c;
+  --nier-bg: #d1cdb7;
+  --nier-panel: #dad4bb;
+  --nier-panel-light: #eae5d2;
+  --nier-border: #b4af9a;
+  --nier-border-dark: #4e4b42;
+  --nier-dark: #4e4b42;
+  --nier-darker: #3f3d36;
+  --nier-strip: #57544a;
+  --nier-red: #cd664d;
+  --nier-green: #89a87d;
+  --nier-grid: #ccc8b1;
+  --nier-text: #3f3d36;
+  --nier-text-heading: #4e4b42;
+  --nier-text-muted: #57544a;
+  --nier-card-shadow: #b4af9a;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground: white;
-    --background: #2e3257;
-    --sh-class: #4c97f8;
-    --sh-identifier: white;
-    --sh-keyword: #f47067;
-    --sh-string: #0fa295;
+.dark {
+  --nier-bg: #181816;
+  --nier-panel: #23221e;
+  --nier-panel-light: #2c2b26;
+  --nier-border: #444138;
+  --nier-border-dark: #5c584c;
+  --nier-dark: #dad4bb;
+  --nier-darker: #eae5d2;
+  --nier-strip: #a39e8a;
+  --nier-red: #e26a50;
+  --nier-green: #89a87d;
+  --nier-grid: #282723;
+  --nier-text: #dad4bb;
+  --nier-text-heading: #eae5d2;
+  --nier-text-muted: #a39e8a;
+  --nier-card-shadow: #0c0c0a;
+}
+
+::selection {
+  background-color: #4e4b42;
+  color: #dad4bb;
+}
+
+.dark ::selection {
+  background-color: #dad4bb;
+  color: #181816;
+}
+
+html, body {
+  min-height: 100vh;
+  background-color: var(--nier-bg);
+  background-size: 4px 4px;
+  background-image:
+    linear-gradient(to right, var(--nier-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--nier-grid) 1px, transparent 1px);
+  color: var(--nier-text);
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* NieR System Design Flying Character Shuffle Text */
+.shuffle-text {
+  min-height: 1em;
+  display: inline-block;
+  vertical-align: baseline;
+  pointer-events: none;
+}
+
+.shuffle-text-char {
+  display: inline-block;
+  animation: 0.45s ease-in-out both rstCharAni;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+.shuffle-text-char-settled {
+  display: inline-block;
+  pointer-events: none;
+}
+
+@keyframes rstCharAni {
+  0% {
+    opacity: 0;
+    transform: translate(100%, 0) scale(3);
   }
-  html {
-    color-scheme: dark;
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
   }
 }
 
-html {
-  min-width: 360px;
-  background-color: var(--background);
-  color: var(--foreground);
+/* CRT Vignette and Scanlines Overlay */
+.nier-crt-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 0, 0, 0) 65%,
+    rgba(0, 0, 0, 0.12) 100%
+  );
+  box-shadow: inset 0 0 120px rgba(78, 75, 66, 0.25);
 }
 
-.prose .anchor {
-  @apply absolute invisible no-underline;
-
-  margin-left: -1em;
-  padding-right: 0.5em;
-  width: 80%;
-  max-width: 700px;
-  cursor: pointer;
+.nier-crt-scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 41;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.04) 50%
+  );
+  background-size: 100% 4px;
+  opacity: 0.6;
 }
 
-.anchor:hover {
-  @apply visible;
+/* Custom NieR Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
 
-.prose a {
-  @apply underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
+::-webkit-scrollbar-track {
+  background: #d1cdb7;
+  border-left: 1px solid #b4af9a;
 }
 
-.prose .anchor:after {
-  @apply text-neutral-300 dark:text-neutral-700;
-  content: "#";
+::-webkit-scrollbar-thumb {
+  background: #4e4b42;
+  border: 1px solid #dad4bb;
 }
 
-.prose *:hover > .anchor {
-  @apply visible;
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3d36;
 }
 
-.prose pre {
-  @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-900 py-2 px-3 text-sm;
+/* Animations for Screen Transition */
+@keyframes nierSlideLeft {
+  0% { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(-100%); opacity: 0; }
 }
 
-.prose code {
-  @apply px-1 py-0.5 rounded-lg;
+@keyframes nierSlideRight {
+  0% { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
 }
 
-.prose pre code {
-  @apply p-0;
-  border: initial;
-  line-height: 1.5;
+.animate-nier-slide-left {
+  animation: nierSlideLeft 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.prose code span {
-  @apply font-medium;
+.animate-nier-slide-right {
+  animation: nierSlideRight 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.prose img {
-  /* Don't apply styles to next/image */
-  @apply m-0;
+/* Exact NieR:Automata Chromatic Aberration Glitch Keyframes */
+@keyframes glitch {
+  0%, 100% {
+    transform: none;
+  }
+  10%, 30%, 50%, 70% {
+    transform: translate(-0.3px, 0.3px) skew(0.2deg);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translate(0.3px, -0.3px) skew(-0.2deg);
+  }
 }
 
-.prose p {
-  @apply my-4 text-neutral-800 dark:text-neutral-200;
+@keyframes glitchBefore {
+  0%, 100% {
+    clip: rect(0, 900px, 0, 0);
+  }
+  10% {
+    clip: rect(20px, 900px, 50px, 0);
+    transform: skew(0.2deg);
+  }
+  20% {
+    clip: rect(85px, 900px, 115px, 0);
+    transform: skew(-0.2deg);
+  }
+  30% {
+    clip: rect(10px, 900px, 40px, 0);
+    transform: skew(0.2deg);
+  }
+  40% {
+    clip: rect(60px, 900px, 90px, 0);
+    transform: skew(-0.2deg);
+  }
+  50% {
+    clip: rect(25px, 900px, 55px, 0);
+    transform: skew(0.2deg);
+  }
+  60% {
+    clip: rect(90px, 900px, 120px, 0);
+    transform: skew(-0.2deg);
+  }
+  70% {
+    clip: rect(15px, 900px, 45px, 0);
+    transform: skew(0.2deg);
+  }
+  80% {
+    clip: rect(70px, 900px, 100px, 0);
+    transform: skew(-0.2deg);
+  }
+  90% {
+    clip: rect(40px, 900px, 70px, 0);
+    transform: skew(0.2deg);
+  }
 }
 
-.prose h1 {
-  @apply text-4xl font-medium tracking-tight mt-6 mb-2;
+@keyframes glitchAfter {
+  0%, 100% {
+    clip: rect(0, 900px, 0, 0);
+  }
+  10% {
+    clip: rect(80px, 900px, 110px, 0);
+    transform: skew(-0.2deg);
+  }
+  20% {
+    clip: rect(15px, 900px, 45px, 0);
+    transform: skew(0.2deg);
+  }
+  30% {
+    clip: rect(70px, 900px, 100px, 0);
+    transform: skew(-0.2deg);
+  }
+  40% {
+    clip: rect(35px, 900px, 65px, 0);
+    transform: skew(0.2deg);
+  }
+  50% {
+    clip: rect(100px, 900px, 130px, 0);
+    transform: skew(-0.2deg);
+  }
+  60% {
+    clip: rect(20px, 900px, 50px, 0);
+    transform: skew(0.2deg);
+  }
+  70% {
+    clip: rect(85px, 900px, 115px, 0);
+    transform: skew(-0.2deg);
+  }
+  80% {
+    clip: rect(30px, 900px, 60px, 0);
+    transform: skew(0.2deg);
+  }
+  90% {
+    clip: rect(55px, 900px, 85px, 0);
+    transform: skew(-0.2deg);
+  }
 }
 
-.prose h2 {
-  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+.glitch-text {
+  position: relative;
+  display: inline-block;
+  animation: glitch 1.5s infinite;
 }
 
-.prose h3 {
-  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
 }
 
-.prose h4 {
-  @apply text-lg font-medium tracking-tight mt-6 mb-2;
+.glitch-text::before {
+  left: 1px;
+  text-shadow: -1px 0 rgba(255, 0, 0, 0.7);
+  animation: glitchBefore 1.5s infinite linear alternate-reverse;
 }
 
-.prose strong {
-  @apply font-medium;
+.glitch-text::after {
+  left: -1px;
+  text-shadow: -1px 0 rgba(0, 180, 255, 0.7);
+  animation: glitchAfter 1.5s infinite linear alternate-reverse;
 }
 
-.prose ul {
-  @apply list-disc pl-6;
+/* =========================================================================
+   NieR:Automata Dark Terminal Mode Overrides
+   ========================================================================= */
+.dark html,
+.dark body {
+  background-color: var(--nier-bg) !important;
+  color: var(--nier-text) !important;
+  background-image:
+    linear-gradient(to right, var(--nier-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--nier-grid) 1px, transparent 1px) !important;
 }
 
-.prose ol {
-  @apply list-decimal pl-6;
+/* Base Panel Backgrounds */
+.dark .bg-\[\#dad4bb\] {
+  background-color: var(--nier-panel) !important;
+}
+.dark .bg-\[\#dad4bb\]\/95,
+.dark .bg-\[\#dad4bb\]\/90 {
+  background-color: rgba(35, 34, 30, 0.92) !important;
+}
+.dark .bg-\[\#dad4bb\]\/80 {
+  background-color: rgba(35, 34, 30, 0.85) !important;
+}
+.dark .bg-\[\#dad4bb\]\/70 {
+  background-color: rgba(35, 34, 30, 0.75) !important;
+}
+.dark .bg-\[\#dad4bb\]\/60 {
+  background-color: rgba(35, 34, 30, 0.65) !important;
+}
+.dark .bg-\[\#eae5d2\] {
+  background-color: var(--nier-panel-light) !important;
+}
+.dark .bg-\[\#d1cdb7\],
+.dark strong.bg-\[\#d1cdb7\] {
+  background-color: #2b2a25 !important;
+}
+.dark .bg-\[\#d1cdb7\]\/60,
+.dark .bg-\[\#d1cdb7\]\/70,
+.dark .bg-\[\#d1cdb7\]\/80 {
+  background-color: rgba(24, 24, 22, 0.75) !important;
+}
+.dark .bg-\[\#4e4b42\] {
+  background-color: #38362f !important;
 }
 
-.prose > :first-child {
-  /* Override removing top margin, causing layout shift */
-  margin-top: 1.25em !important;
-  margin-bottom: 1.25em !important;
+/* Text Colors with High Contrast for Dark Terminal */
+.dark .text-\[\#3f3d36\] {
+  color: #e6e1cd !important;
+}
+.dark .text-\[\#4e4b42\] {
+  color: #f5f0e1 !important;
+}
+.dark .text-\[\#57544a\] {
+  color: #b8b3a0 !important;
 }
 
-pre::-webkit-scrollbar {
-  display: none;
+/* Borders */
+.dark .border-\[\#b4af9a\] {
+  border-color: var(--nier-border) !important;
+}
+.dark .border-\[\#4e4b42\] {
+  border-color: var(--nier-border-dark) !important;
 }
 
-pre {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+/* Box Shadows */
+.dark .shadow-\[2px_2px_0px_\#b4af9a\],
+.dark .shadow-\[3px_3px_0px_\#b4af9a\],
+.dark .shadow-\[4px_4px_0px_\#b4af9a\] {
+  box-shadow: 2px 2px 0px var(--nier-card-shadow) !important;
+}
+.dark .shadow-\[2px_2px_0px_\#4e4b42\],
+.dark .shadow-\[3px_3px_0px_\#4e4b42\] {
+  box-shadow: 2px 2px 0px #0a0a09 !important;
 }
 
-/* Remove Safari input shadow on mobile */
-input[type="text"],
-input[type="email"] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+/* Hover States in Dark Mode */
+.dark .hover\:bg-\[\#eae5d2\]:hover {
+  background-color: #2c2b26 !important;
+}
+.dark .hover\:bg-\[\#4e4b42\]:hover {
+  background-color: #444138 !important;
+}
+.dark .hover\:text-\[\#dad4bb\]:hover {
+  color: #eae5d2 !important;
+}
+.dark .hover\:border-\[\#4e4b42\]:hover {
+  border-color: #8c8777 !important;
 }
 
-table {
-  display: block;
-  max-width: fit-content;
-  overflow-x: auto;
-  white-space: nowrap;
+/* Interactive Button Inversion in Dark Mode */
+.dark .group:hover .bg-\[\#4e4b42\],
+.dark .bg-\[\#4e4b42\].shadow-\[2px_2px_0px_\#b4af9a\],
+.dark .bg-\[\#4e4b42\].shadow-\[3px_3px_0px_\#b4af9a\] {
+  background-color: #dad4bb !important;
+  color: #181816 !important;
+  border-color: #dad4bb !important;
 }
 
-.title {
-  text-wrap: balance;
+.dark .group:hover .bg-\[\#4e4b42\] *,
+.dark .bg-\[\#4e4b42\].shadow-\[2px_2px_0px_\#b4af9a\] * {
+  color: #181816 !important;
 }
+
+/* Square pip inversion on hover/active in dark mode */
+.dark .group:hover .bg-\[\#4e4b42\] div[class*="bg-\[\#dad4bb\]"],
+.dark .bg-\[\#4e4b42\].shadow-\[2px_2px_0px_\#b4af9a\] div[class*="bg-\[\#dad4bb\]"] {
+  background-color: #181816 !important;
+}
+
+/* Expanding razor line on hover in dark mode */
+.dark .group:hover > div:first-child,
+.dark .group:hover > div:last-child {
+  background-color: #dad4bb !important;
+}
+
+/* Scrollbars in Dark Mode */
+.dark ::-webkit-scrollbar-track {
+  background: #181816 !important;
+  border-left: 1px solid #444138 !important;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #38362f !important;
+  border: 1px solid #23221e !important;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #4a473e !important;
+}
+
+/* =========================================================================
+   NieR:Automata Button Hovering, Clicking & Motion Physics
+   ========================================================================= */
+.nier-btn-surface {
+  background-image: linear-gradient(90deg, #dad4bb 50%, #dad4bb 50%, #57544a 50%, #57544a 100%);
+  background-size: 200% 100%;
+  background-position: 0% 0%;
+  color: #3f3d36;
+  transition: background-position 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.08s ease,
+              border-color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.nier-btn-surface.active,
+.group:hover .nier-btn-surface {
+  background-position: -100% 0%;
+  color: #dad4bb !important;
+  border-color: #57544a !important;
+}
+
+.dark .nier-btn-surface {
+  background-image: linear-gradient(90deg, #23221e 50%, #23221e 50%, #dad4bb 50%, #dad4bb 100%);
+  color: #dad4bb;
+  border-color: #444138;
+}
+
+.dark .nier-btn-surface.active,
+.dark .group:hover .nier-btn-surface {
+  background-position: -100% 0%;
+  color: #181816 !important;
+  border-color: #dad4bb !important;
+}
+
+/* Square indicator pip with reverse gradient (remains square on hover and active) */
+.nier-pip {
+  width: 10px;
+  height: 10px;
+  background-image: linear-gradient(90deg, #57544a 50%, #57544a 50%, #dad4bb 50%, #dad4bb 100%);
+  background-size: 200% 100%;
+  background-position: 0% 0%;
+  transform: none;
+  transition: background-position 0.18s linear;
+}
+
+.group:hover .nier-pip,
+.nier-btn-surface.active .nier-pip {
+  background-position: -100% 0%;
+  transform: none;
+}
+
+.dark .nier-pip {
+  background-image: linear-gradient(90deg, #dad4bb 50%, #dad4bb 50%, #181816 50%, #181816 100%);
+}
+
+.dark .group:hover .nier-pip,
+.dark .nier-btn-surface.active .nier-pip {
+  background-position: -100% 0%;
+  transform: none;
+}
+
+/* Expanding Razor Border Lines (±8px physics from original repo) */
+.nier-razor-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #57544a;
+  transform: translateY(0);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease;
+}
+
+.group:hover .nier-razor-top {
+  transform: translateY(-8px);
+  opacity: 1;
+}
+
+.nier-razor-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #57544a;
+  transform: translateY(0);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease;
+}
+
+.group:hover .nier-razor-bottom {
+  transform: translateY(8px);
+  opacity: 1;
+}
+
+.dark .nier-razor-top,
+.dark .nier-razor-bottom {
+  background-color: #dad4bb;
+}
+
+/* =========================================================================
+   Authentic NieR Component Slide From Left (PagesTemplate.tsx easeOut x:-100 -> 0)
+   ========================================================================= */
+@keyframes nierSlideFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes nierSlideFromLeftSubtle {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.nier-slide-left {
+  animation: nierSlideFromLeft 0.5s cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+.nier-slide-left-stagger-1 {
+  animation: nierSlideFromLeft 0.5s cubic-bezier(0, 0, 0.2, 1) 0.06s both;
+}
+
+.nier-slide-left-stagger-2 {
+  animation: nierSlideFromLeft 0.5s cubic-bezier(0, 0, 0.2, 1) 0.12s both;
+}
+
+.nier-slide-left-subtle {
+  animation: nierSlideFromLeftSubtle 0.4s cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+/* Authentic Title.tsx styling from NieR-Automata-Design-System */
+.nier-page-title {
+  color: #57544a;
+  letter-spacing: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 16px;
+  text-shadow: 7px 5px rgba(0, 0, 0, 0.22);
+  margin-bottom: 0.5rem;
+}
+
+.dark .nier-page-title {
+  color: #eae5d2;
+  text-shadow: 7px 5px rgba(255, 255, 255, 0.15);
+}
+
+.nier-page-title h1 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: 8px;
+  line-height: 1.1;
+}
+
+@media (max-width: 640px) {
+  .nier-page-title h1 {
+    font-size: 32px;
+    letter-spacing: 4px;
+  }
+}
+
+.nier-page-title h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  text-shadow: 6px 4px rgba(0, 0, 0, 0.04);
+  color: #7a7667;
+  line-height: 1.1;
+}
+
+.dark .nier-page-title h3 {
+  color: #a39e8a;
+  text-shadow: 6px 4px rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 640px) {
+  .nier-page-title h3 {
+    font-size: 16px;
+  }
+}
+
+/* Authentic NieR Text Shadows (Calibrated from Title.tsx) */
+.nier-title-shadow {
+  text-shadow: 2px 1.5px rgba(0, 0, 0, 0.18);
+  letter-spacing: 1px;
+}
+
+.dark .nier-title-shadow {
+  text-shadow: 2px 1.5px rgba(255, 255, 255, 0.14);
+}
+
+.nier-text-shadow-sm {
+  text-shadow: 2px 1.5px rgba(0, 0, 0, 0.14);
+}
+
+.dark .nier-text-shadow-sm {
+  text-shadow: 2px 1.5px rgba(255, 255, 255, 0.12);
+}
+
+.nier-heading {
+  font-family: 'Manrope', sans-serif;
+  letter-spacing: 4px;
+  text-shadow: 6px 4px rgba(0, 0, 0, 0.22);
+  font-weight: 700;
+  color: var(--nier-text-heading);
+}
+
+.dark .nier-heading {
+  text-shadow: 6px 4px rgba(255, 255, 255, 0.15);
+}
+
+.nier-subheading {
+  font-family: 'Manrope', sans-serif;
+  letter-spacing: 1px;
+  text-shadow: 4px 3px rgba(0, 0, 0, 0.10);
+  font-weight: 500;
+  color: var(--nier-text-muted);
+}
+
+.dark .nier-subheading {
+  text-shadow: 4px 3px rgba(255, 255, 255, 0.10);
+}
+
+/* Individual Component Cascade Slide From Left (Matching PagesTemplate.tsx initial={x:-100}) */
+@keyframes nierComponentCascade {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.nier-slide-in {
+  opacity: 0;
+  animation: nierComponentCascade 0.45s cubic-bezier(0, 0, 0.2, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.stagger-1  { animation-delay: 0.02s; }
+.stagger-2  { animation-delay: 0.06s; }
+.stagger-3  { animation-delay: 0.10s; }
+.stagger-4  { animation-delay: 0.14s; }
+.stagger-5  { animation-delay: 0.18s; }
+.stagger-6  { animation-delay: 0.22s; }
+.stagger-7  { animation-delay: 0.26s; }
+.stagger-8  { animation-delay: 0.30s; }
+.stagger-9  { animation-delay: 0.34s; }
+.stagger-10 { animation-delay: 0.38s; }
+.stagger-11 { animation-delay: 0.42s; }
+.stagger-12 { animation-delay: 0.46s; }
+
+
+

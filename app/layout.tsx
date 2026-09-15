@@ -1,25 +1,23 @@
 import "./global.css";
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
-import { Navbar } from "./components/nav";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import Footer from "./components/footer";
 import { baseUrl } from "./sitemap";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Ram Panjwani's Portfolio",
-    template: "%s | Next.js Portfolio Starter",
+    default: "Ram Panjwani // YoRHa Systems Portfolio",
+    template: "%s | Ram Panjwani",
   },
-  description: "This is my portfolio.",
+  description:
+    "Full-Stack & Systems Engineer specializing in graph-native criminal network intelligence (NEXUS), agentic maritime reasoning (SAMUDRA/ISRO), and multimodal public goods.",
   openGraph: {
-    title: "My Portfolio",
-    description: "This is my portfolio.",
+    title: "Ram Panjwani // YoRHa Systems Portfolio",
+    description:
+      "Full-Stack & Systems Engineer specializing in graph-native criminal network intelligence (NEXUS), agentic maritime reasoning (SAMUDRA/ISRO), and multimodal public goods.",
     url: baseUrl,
-    siteName: "My Portfolio",
+    siteName: "Ram Panjwani Portfolio",
     locale: "en_US",
     type: "website",
   },
@@ -36,30 +34,33 @@ export const metadata: Metadata = {
   },
 };
 
-const cx = (...classes) => classes.filter(Boolean).join(" ");
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={cx(
-        "text-black bg-white dark:text-white dark:bg-black",
-        GeistSans.variable,
-        GeistMono.variable,
-      )}
-    >
-      <body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
-        <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
-          <Navbar />
-          {children}
-          <Footer />
-          <Analytics />
-          <SpeedInsights />
-        </main>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const saved = localStorage.getItem('nier_theme');
+                if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
+      <body className="antialiased min-h-screen">
+        {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
