@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { NierButton } from './NierButton';
 import { NierBar } from './NierBar';
 import { nierAudio } from './NierAudio';
-import { Volume2, VolumeX, Monitor, Radio, Compass, Shield, Sun, Moon } from 'lucide-react';
+import { Volume2, VolumeX, Monitor, Sun, Moon, Menu, X } from 'lucide-react';
 
 interface NierHeaderProps {
   activeTab: string;
@@ -28,10 +28,15 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
   onToggleTheme,
 }) => {
   const [audioActive, setAudioActive] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     setAudioActive(nierAudio.enabled);
   }, []);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [activeTab]);
 
   const handleAudioToggle = () => {
     const newState = nierAudio.toggle();
@@ -93,15 +98,68 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
           </div>
       </div>
 
-      {/* Main Navigation Row with Musical Score Bar */}
-      <div className="flex items-stretch gap-3">
+      {/* Mobile Navigation Header Bar (< sm) */}
+      <div className="flex sm:hidden items-center justify-between gap-2">
+        <div className="flex items-center gap-2">
+          <NierBar height="32px" dark={true} />
+          <div className="font-mono text-xs">
+            <span className="text-[10px] text-[#57544a] block leading-none">ACTIVE MODULE</span>
+            <span className="font-bold text-[#3f3d36] text-xs tracking-wider">
+              {NAVIGATION_TABS.find((t) => activeTab === t.id || (t.id === 'photos' && activeTab === 'logs'))?.label || '[01] SYSTEM'}
+            </span>
+          </div>
+        </div>
+
+        <button
+          onClick={() => {
+            setMenuOpen((prev) => !prev);
+            nierAudio.playSelect();
+          }}
+          className={`flex items-center gap-1.5 px-3 py-1.5 border text-xs font-mono font-bold transition-all shadow-[2px_2px_0px_#b4af9a] active:translate-y-[1px] ${
+            menuOpen
+              ? 'bg-[#4e4b42] text-[#dad4bb] border-[#4e4b42]'
+              : 'bg-[#dad4bb] text-[#4e4b42] border-[#4e4b42] hover:bg-[#eae5d2]'
+          }`}
+          aria-expanded={menuOpen}
+          aria-label="Toggle Navigation Menu"
+        >
+          {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+          <span>{menuOpen ? 'CLOSE' : 'MENU'}</span>
+        </button>
+      </div>
+
+      {/* Mobile Dropdown Menu */}
+      {menuOpen && (
+        <nav className="sm:hidden grid grid-cols-1 gap-1.5 p-2 bg-[#eae5d2] border border-[#4e4b42] shadow-[3px_3px_0px_#b4af9a] nier-slide-in">
+          {NAVIGATION_TABS.map((tab) => {
+            const isActive = activeTab === tab.id || (tab.id === 'photos' && activeTab === 'logs');
+            return (
+              <NierButton
+                key={tab.id}
+                active={isActive}
+                variant={isActive ? 'primary' : 'secondary'}
+                onClick={() => {
+                  onTabChange(tab.id);
+                  setMenuOpen(false);
+                }}
+                className="text-xs w-full py-2"
+              >
+                <span>{tab.label}</span>
+              </NierButton>
+            );
+          })}
+        </nav>
+      )}
+
+      {/* Desktop Navigation Row with Musical Score Bar (>= sm) */}
+      <div className="hidden sm:flex items-stretch gap-3">
         {/* Double Bar Musical Score Motif (Hisayoshi Kijima devblog) */}
-        <div className="hidden sm:flex items-center">
+        <div className="flex items-center">
           <NierBar height="38px" dark={true} />
         </div>
 
         {/* Navigation Tabs */}
-        <nav className="flex-1 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1.5 sm:gap-2">
+        <nav className="flex-1 grid sm:grid-cols-3 lg:grid-cols-6 gap-1.5 sm:gap-2">
           {NAVIGATION_TABS.map((tab) => {
             const isActive = activeTab === tab.id || (tab.id === 'photos' && activeTab === 'logs');
             return (
