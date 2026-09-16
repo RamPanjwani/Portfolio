@@ -99,15 +99,9 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
       </div>
 
       {/* Mobile Navigation Header Bar (< sm) */}
-      <div className="flex sm:hidden items-center justify-between gap-2">
-        <div className="flex items-center gap-2">
-          <NierBar height="32px" dark={true} />
-          <div className="font-mono text-xs">
-            <span className="text-[10px] text-[#57544a] block leading-none">ACTIVE MODULE</span>
-            <span className="font-bold text-[#3f3d36] text-xs tracking-wider">
-              {NAVIGATION_TABS.find((t) => activeTab === t.id || (t.id === 'photos' && activeTab === 'logs'))?.label || '[01] SYSTEM'}
-            </span>
-          </div>
+      <div className="flex sm:hidden items-stretch gap-2.5 w-full">
+        <div className="flex items-center">
+          <NierBar height="38px" dark={true} />
         </div>
 
         <button
@@ -115,16 +109,25 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
             setMenuOpen((prev) => !prev);
             nierAudio.playSelect();
           }}
-          className={`flex items-center gap-1.5 px-3 py-1.5 border text-xs font-mono font-bold transition-all shadow-[2px_2px_0px_#b4af9a] active:translate-y-[1px] ${
+          className={`flex-1 flex items-center justify-between px-3.5 py-2 border text-xs font-mono font-bold transition-all shadow-[2px_2px_0px_#b4af9a] active:scale-[0.99] active:translate-y-[1px] ${
             menuOpen
               ? 'bg-[#4e4b42] text-[#dad4bb] border-[#4e4b42]'
-              : 'bg-[#dad4bb] text-[#4e4b42] border-[#4e4b42] hover:bg-[#eae5d2]'
+              : 'bg-[#dad4bb] text-[#3f3d36] border-[#4e4b42] hover:bg-[#eae5d2]'
           }`}
           aria-expanded={menuOpen}
           aria-label="Toggle Navigation Menu"
         >
-          {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-          <span>{menuOpen ? 'CLOSE' : 'MENU'}</span>
+          <div className="flex items-center gap-2 min-w-0">
+            <span className={`w-2 h-2 rotate-45 shrink-0 ${menuOpen ? 'bg-[#dad4bb]' : 'bg-[#cd664d]'}`} />
+            <span className="truncate tracking-wider font-bold text-xs sm:text-sm">
+              {NAVIGATION_TABS.find((t) => activeTab === t.id || (t.id === 'photos' && activeTab === 'logs'))?.label || '[01] SYSTEM'}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-1.5 shrink-0 text-xs font-mono ml-2">
+            <span className="text-[10px] tracking-wider opacity-80">{menuOpen ? 'CLOSE' : 'MENU'}</span>
+            {menuOpen ? <X className="w-4 h-4 shrink-0" /> : <Menu className="w-4 h-4 shrink-0" />}
+          </div>
         </button>
       </div>
 
