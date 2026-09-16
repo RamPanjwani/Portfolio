@@ -8,7 +8,6 @@ import { SystemView } from './components/nier/SystemView';
 import { ArsenalView } from './components/nier/ArsenalView';
 import { ChipsView } from './components/nier/ChipsView';
 import { PhotosView } from './components/nier/PhotosView';
-import { IntelView } from './components/nier/IntelView';
 import { CommView } from './components/nier/CommView';
 import { nierAudio } from './components/nier/NierAudio';
 
@@ -17,7 +16,7 @@ function PortfolioContent() {
   const rawTab = searchParams.get('tab') || 'system';
   const initialTab = rawTab === 'logs' ? 'photos' : rawTab;
   const [activeTab, setActiveTab] = useState<string>(
-    ['system', 'arsenal', 'chips', 'photos', 'logs', 'intel', 'comm'].includes(initialTab) ? initialTab : 'system'
+    ['system', 'arsenal', 'chips', 'photos', 'logs', 'comm'].includes(initialTab) ? initialTab : 'system'
   );
   const [crtEnabled, setCrtEnabled] = useState<boolean>(true);
   const [isBooting, setIsBooting] = useState<boolean>(searchParams.get('noboot') !== 'true');
@@ -88,13 +87,13 @@ function PortfolioContent() {
     if (tabParam) {
       if (tabParam === 'logs') {
         setActiveTab('photos');
-      } else if (['system', 'arsenal', 'chips', 'photos', 'intel', 'comm'].includes(tabParam)) {
+      } else if (['system', 'arsenal', 'chips', 'photos', 'comm'].includes(tabParam)) {
         setActiveTab(tabParam);
       }
     }
   }, [searchParams]);
 
-  // Keyboard navigation shortcuts [1 - 6]
+  // Keyboard navigation shortcuts [1 - 5]
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       // Don't trigger when user is typing inside form inputs
@@ -120,10 +119,6 @@ function PortfolioContent() {
           nierAudio.playSelect();
           break;
         case '5':
-          setActiveTab('intel');
-          nierAudio.playSelect();
-          break;
-        case '6':
           setActiveTab('comm');
           nierAudio.playSelect();
           break;
@@ -179,7 +174,6 @@ function PortfolioContent() {
             {activeTab === 'arsenal' && <ArsenalView />}
             {activeTab === 'chips' && <ChipsView />}
             {(activeTab === 'photos' || activeTab === 'logs') && <PhotosView />}
-            {activeTab === 'intel' && <IntelView />}
             {activeTab === 'comm' && <CommView />}
           </main>
         </div>

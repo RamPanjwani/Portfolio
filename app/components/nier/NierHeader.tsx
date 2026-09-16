@@ -163,7 +163,7 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
       </div>
 
       {/* Desktop Navigation Tabs (>= sm) */}
-      <nav className="hidden sm:grid sm:grid-cols-3 lg:grid-cols-6 gap-1.5 sm:gap-2">
+      <nav className="hidden sm:grid sm:grid-cols-3 lg:grid-cols-5 gap-1.5 sm:gap-2">
         {NAVIGATION_TABS.map((tab) => {
           const isActive = activeTab === tab.id || (tab.id === 'photos' && activeTab === 'logs');
           return (

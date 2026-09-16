@@ -5,7 +5,6 @@ export const NAVIGATION_TABS: NavigationTab[] = [
   { id: 'arsenal', label: 'Projects', sub: 'Weapons & Work' },
   { id: 'chips', label: 'Blog', sub: 'Skills & Plug-ins' },
   { id: 'photos', label: 'Photos', sub: 'Optical Archives' },
-  { id: 'intel', label: 'Intel', sub: 'Archives & Notes' },
   { id: 'comm', label: 'Connect', sub: 'Transmission' },
 ];
 
