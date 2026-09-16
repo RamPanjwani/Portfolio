@@ -19,8 +19,9 @@ function PortfolioContent() {
     ['system', 'arsenal', 'chips', 'photos', 'logs', 'comm'].includes(initialTab) ? initialTab : 'system'
   );
   const [crtEnabled, setCrtEnabled] = useState<boolean>(true);
-  const [isBooting, setIsBooting] = useState<boolean>(searchParams.get('noboot') !== 'true');
-  const [contentKey, setContentKey] = useState<number>(0);
+  const noBoot = searchParams.get('noboot') === 'true';
+  const [isBooting, setIsBooting] = useState<boolean>(!noBoot);
+  const [showContent, setShowContent] = useState<boolean>(noBoot);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   // Hydrate theme on mount & respond to device/browser theme
@@ -142,16 +143,19 @@ function PortfolioContent() {
     nierAudio.playHover();
   };
 
+  const handleStartingExit = () => {
+    setShowContent(true);
+  };
+
   const handleBootComplete = () => {
     setIsBooting(false);
-    setContentKey((prev) => prev + 1);
   };
 
   return (
     <div className="relative min-h-screen flex flex-col justify-between">
       {/* Booting Sequence Overlay */}
       {isBooting && (
-        <NierBootScreen onComplete={handleBootComplete} />
+        <NierBootScreen onStartingExit={handleStartingExit} onComplete={handleBootComplete} />
       )}
 
       {/* CRT Lens Vignette and Scanlines Overlay */}
@@ -170,18 +174,23 @@ function PortfolioContent() {
             onTabChange={handleTabChange}
             crtEnabled={crtEnabled}
             onToggleCrt={toggleCrt}
-            onReboot={() => setIsBooting(true)}
+            onReboot={() => {
+              setShowContent(false);
+              setIsBooting(true);
+            }}
             theme={theme}
             onToggleTheme={toggleTheme}
           />
 
-          <main key={`${activeTab}-${contentKey}`} className="w-full mt-4">
-            {activeTab === 'system' && <SystemView onNavigate={handleTabChange} />}
-            {activeTab === 'arsenal' && <ArsenalView />}
-            {activeTab === 'chips' && <ChipsView />}
-            {(activeTab === 'photos' || activeTab === 'logs') && <PhotosView />}
-            {activeTab === 'comm' && <CommView />}
-          </main>
+          {showContent && (
+            <main key={activeTab} className="w-full mt-4">
+              {activeTab === 'system' && <SystemView onNavigate={handleTabChange} />}
+              {activeTab === 'arsenal' && <ArsenalView />}
+              {activeTab === 'chips' && <ChipsView />}
+              {(activeTab === 'photos' || activeTab === 'logs') && <PhotosView />}
+              {activeTab === 'comm' && <CommView />}
+            </main>
+          )}
         </div>
       </div>
     </div>

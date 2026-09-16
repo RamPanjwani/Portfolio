@@ -7,22 +7,25 @@ import { SpinLoadingIcon } from "./loading/SpinLoadingIcon";
 import { nierAudio } from "./NierAudio";
 
 interface NierBootScreenProps {
+  onStartingExit?: () => void;
   onComplete: () => void;
 }
 
-export const NierBootScreen: React.FC<NierBootScreenProps> = ({ onComplete }) => {
+export const NierBootScreen: React.FC<NierBootScreenProps> = ({ onStartingExit, onComplete }) => {
   const [fadeOut, setFadeOut] = useState(false);
 
   const handleFinish = () => {
     nierAudio.playSelect();
     setFadeOut(true);
-    setTimeout(onComplete, 600);
+    onStartingExit?.();
+    setTimeout(onComplete, 200);
   };
 
   const handleSkip = () => {
     nierAudio.playSelect();
     setFadeOut(true);
-    setTimeout(onComplete, 200);
+    onStartingExit?.();
+    setTimeout(onComplete, 120);
   };
 
   // Keyboard shortcut ESC to skip silently
@@ -38,7 +41,7 @@ export const NierBootScreen: React.FC<NierBootScreenProps> = ({ onComplete }) =>
 
   return (
     <main
-      className={`fixed inset-0 z-[100] text-white flex flex-col p-[2%] md:p-[4%] select-none overflow-hidden font-sans transition-opacity duration-500 ${
+      className={`fixed inset-0 z-[100] text-white flex flex-col p-[2%] md:p-[4%] select-none overflow-hidden font-sans transition-opacity duration-200 ease-out ${
         fadeOut ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
       style={{
