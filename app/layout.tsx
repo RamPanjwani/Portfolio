@@ -7,7 +7,7 @@ import { baseUrl } from "./sitemap";
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Ram Panjwani // YoRHa Systems Portfolio",
+    default: "Ram Panjwani",
     template: "%s | Ram Panjwani",
   },
   description:

@@ -98,16 +98,25 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
       </div>
 
       {/* Mobile Navigation Header Bar (< sm) */}
-      <button
-        onClick={() => {
-          setMenuOpen((prev) => !prev);
-          nierAudio.playSelect();
-        }}
-        className={`sm:hidden w-full flex items-center justify-between px-3.5 py-2 border text-xs font-mono font-bold transition-all shadow-[2px_2px_0px_#b4af9a] active:scale-[0.99] active:translate-y-[1px] ${
-          menuOpen
-            ? 'bg-[#4e4b42] text-[#dad4bb] border-[#4e4b42]'
-            : 'bg-[#dad4bb] text-[#3f3d36] border-[#4e4b42] hover:bg-[#eae5d2]'
-        }`}
+      <div className="relative sm:hidden w-full">
+        {/* Backdrop overlay for closing on outside click */}
+        {menuOpen && (
+          <div
+            className="fixed inset-0 z-40 bg-black/20"
+            onClick={() => setMenuOpen(false)}
+          />
+        )}
+
+        <button
+          onClick={() => {
+            setMenuOpen((prev) => !prev);
+            nierAudio.playSelect();
+          }}
+          className={`relative z-50 w-full flex items-center justify-between px-3.5 py-2 border text-xs font-mono font-bold transition-all shadow-[2px_2px_0px_#b4af9a] active:scale-[0.99] active:translate-y-[1px] ${
+            menuOpen
+              ? 'bg-[#4e4b42] text-[#dad4bb] border-[#4e4b42]'
+              : 'bg-[#dad4bb] text-[#3f3d36] border-[#4e4b42] hover:bg-[#eae5d2]'
+          }`}
           aria-expanded={menuOpen}
           aria-label="Toggle Navigation Menu"
         >
@@ -129,28 +138,29 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
           </div>
         </button>
 
-      {/* Mobile Dropdown Menu */}
-      {menuOpen && (
-        <nav className="sm:hidden grid grid-cols-1 gap-1.5 p-2 bg-[#eae5d2] border border-[#4e4b42] shadow-[3px_3px_0px_#b4af9a] nier-slide-in">
-          {NAVIGATION_TABS.map((tab) => {
-            const isActive = activeTab === tab.id || (tab.id === 'photos' && activeTab === 'logs');
-            return (
-              <NierButton
-                key={tab.id}
-                active={isActive}
-                variant={isActive ? 'primary' : 'secondary'}
-                onClick={() => {
-                  onTabChange(tab.id);
-                  setMenuOpen(false);
-                }}
-                className="text-xs w-full py-2"
-              >
-                <span>{tab.label}</span>
-              </NierButton>
-            );
-          })}
-        </nav>
-      )}
+        {/* Mobile Dropdown Menu Floating Overlay */}
+        {menuOpen && (
+          <nav className="absolute top-full left-0 right-0 z-50 mt-1 grid grid-cols-1 gap-1.5 p-2 bg-[#eae5d2] border-2 border-[#4e4b42] shadow-[4px_4px_0px_#4e4b42] nier-slide-in">
+            {NAVIGATION_TABS.map((tab) => {
+              const isActive = activeTab === tab.id || (tab.id === 'photos' && activeTab === 'logs');
+              return (
+                <NierButton
+                  key={tab.id}
+                  active={isActive}
+                  variant={isActive ? 'primary' : 'secondary'}
+                  onClick={() => {
+                    onTabChange(tab.id);
+                    setMenuOpen(false);
+                  }}
+                  className="text-xs w-full py-2"
+                >
+                  <span>{tab.label}</span>
+                </NierButton>
+              );
+            })}
+          </nav>
+        )}
+      </div>
 
       {/* Desktop Navigation Tabs (>= sm) */}
       <nav className="hidden sm:grid sm:grid-cols-3 lg:grid-cols-6 gap-1.5 sm:gap-2">
