@@ -29,7 +29,7 @@ export const ArsenalView: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Side: Weapons List */}
-        <div className="lg:col-span-5 space-y-3">
+        <div className="lg:col-span-5 xl:col-span-4 2xl:col-span-4 space-y-3">
           {PROJECTS.map((project, idx) => {
             const isSelected = project.id === selectedId;
             return (
@@ -67,7 +67,7 @@ export const ArsenalView: React.FC = () => {
         <NierCard
           key={activeProject.id}
           staggerIndex={4}
-          className="lg:col-span-7 space-y-5"
+          className="lg:col-span-7 xl:col-span-8 2xl:col-span-8 space-y-5"
         >
           {/* Header */}
           <div className="border-b border-[#b4af9a] pb-3">

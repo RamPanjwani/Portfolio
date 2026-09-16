@@ -107,7 +107,7 @@ export const CommView: React.FC = () => {
           staggerIndex={2}
           headerIcon={<Radio className="w-3.5 h-3.5 text-[#cd664d]" />}
           headerTitle="DISPATCH OPERATIONAL TRANSMISSION"
-          className="lg:col-span-7 space-y-4"
+          className="lg:col-span-7 xl:col-span-8 2xl:col-span-8 space-y-4"
         >
           {sent ? (
             <div className="p-6 border border-[#89a87d] bg-[#eae5d2] text-center space-y-2">
@@ -190,7 +190,7 @@ export const CommView: React.FC = () => {
         </NierCard>
 
         {/* Right: Uplink Coordinates & Easter Egg */}
-        <div className="lg:col-span-5 space-y-4">
+        <div className="lg:col-span-5 xl:col-span-4 2xl:col-span-4 space-y-4">
           <NierCard
             staggerIndex={3}
             headerTitle="VERIFIED UPLINK CHANNELS"

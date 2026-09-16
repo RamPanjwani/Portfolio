@@ -150,7 +150,7 @@ export const PhotosView: React.FC = () => {
           <p className="text-xs text-[#57544a]">Select another category filter to view records.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-5">
           {filteredPhotos.map((photo, idx) => {
             const stagger = `stagger-${Math.min((idx % 5) + 2, 6)}`;
             return (

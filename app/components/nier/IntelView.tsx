@@ -26,7 +26,7 @@ export const IntelView: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left: Article Index */}
-        <div className="lg:col-span-5 space-y-2.5">
+        <div className="lg:col-span-5 xl:col-span-4 2xl:col-span-4 space-y-2.5">
           {INTEL_RECORDS.map((record, idx) => {
             const isSelected = record.id === selectedRecord.id;
             return (
@@ -62,7 +62,7 @@ export const IntelView: React.FC = () => {
         <NierCard
           key={selectedRecord.id}
           staggerIndex={4}
-          className="lg:col-span-7 space-y-4"
+          className="lg:col-span-7 xl:col-span-8 2xl:col-span-8 space-y-4"
         >
           <div className="border-b border-[#b4af9a] pb-3">
             <div className="flex flex-wrap items-center justify-between text-xs text-[#57544a] mb-1 font-mono gap-1">

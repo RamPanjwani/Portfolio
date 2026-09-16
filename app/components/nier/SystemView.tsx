@@ -40,13 +40,13 @@ export const SystemView: React.FC<SystemViewProps> = ({ onNavigate }) => {
       </div>
 
       {/* Main Profile Spec Card */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Column: Avatar & Model Info */}
         <NierCard
           staggerIndex={2}
           headerTitle={SYSTEM_PROFILE.unitIdentifier}
           headerRight={<NierBadge variant="primary">{SYSTEM_PROFILE.level}</NierBadge>}
-          className="flex flex-col justify-between"
+          className="lg:col-span-5 xl:col-span-4 2xl:col-span-3 flex flex-col justify-between"
         >
           <div className="space-y-4">
             {/* YoRHa Unit Portrait / Emblem */}
@@ -102,8 +102,8 @@ export const SystemView: React.FC<SystemViewProps> = ({ onNavigate }) => {
           </div>
         </NierCard>
 
-        {/* Right 2 Columns: Bio, Core Architecture & Live Diagnostics */}
-        <div className="lg:col-span-2 space-y-6">
+        {/* Right Columns: Bio, Core Architecture & Live Diagnostics */}
+        <div className="lg:col-span-7 xl:col-span-8 2xl:col-span-9 space-y-6">
           {/* Directive Dossier */}
           <NierCard
             staggerIndex={3}

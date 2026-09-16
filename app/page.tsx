@@ -3,7 +3,6 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { NierHeader } from './components/nier/NierHeader';
-import { NierFooter } from './components/nier/NierFooter';
 import { NierBootScreen } from './components/nier/NierBootScreen';
 import { SystemView } from './components/nier/SystemView';
 import { ArsenalView } from './components/nier/ArsenalView';
@@ -163,7 +162,7 @@ function PortfolioContent() {
       )}
 
       {/* Main Container */}
-      <div className="w-full max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-6 flex-1 flex flex-col justify-between">
+      <div className="w-full max-w-[1800px] 2xl:max-w-[2000px] mx-auto px-3 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-3 sm:py-6 flex-1 flex flex-col justify-between">
         <div className="space-y-4 sm:space-y-6">
           <NierHeader
             activeTab={activeTab}

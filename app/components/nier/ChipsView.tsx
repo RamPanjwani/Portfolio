@@ -106,7 +106,7 @@ export const ChipsView: React.FC = () => {
       {/* Main Grid: Chip Inventory & Inspector */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Chip List */}
-        <div className="lg:col-span-7 space-y-2 max-h-[500px] overflow-y-auto pr-1">
+        <div className="lg:col-span-7 xl:col-span-7 2xl:col-span-8 space-y-2 max-h-[500px] xl:max-h-[620px] overflow-y-auto pr-1">
           {filteredChips.map((chip, idx) => {
             const isSelected = chip.id === selectedChip.id;
             return (
@@ -149,7 +149,7 @@ export const ChipsView: React.FC = () => {
         <NierCard
           key={selectedChip.id}
           staggerIndex={4}
-          className="lg:col-span-5 space-y-4"
+          className="lg:col-span-5 xl:col-span-5 2xl:col-span-4 space-y-4"
         >
           <div className="border-b border-[#b4af9a] pb-2">
             <div className="flex items-center justify-between text-xs mb-1">

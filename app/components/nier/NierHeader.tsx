@@ -112,6 +112,16 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
           </button>
 
           </div>
+
+        {/* Right Telemetry Readout */}
+        <div className="hidden sm:flex items-center gap-2 text-[10px] sm:text-[11px] font-mono text-[#57544a]">
+          <span className="bg-[#dad4bb] px-1.5 sm:px-2 py-0.5 border border-[#b4af9a] font-bold text-[#3f3d36]">
+            YORHA // TACTICAL HUD
+          </span>
+          <span className="hidden md:inline text-[10px] text-[#89a87d] font-bold">
+            SIGNAL: OPTIMAL [100%]
+          </span>
+        </div>
       </div>
 
       {/* Main Navigation Row with Musical Score Bar */}

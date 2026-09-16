@@ -1,6 +1,7 @@
 import { UplinkChannel, CommConfig } from './types';
 
 export const COMM_CONFIG: CommConfig = {
+  frequency: '92.45 MHz // CARRIER STABLE',
   transmissionTarget: 'Unit Ram Panjwani has received your packet. Expect a reply within 24 operational hours.',
   confirmationNotice: 'TRANSMISSION ENCRYPTED & DISPATCHED',
   selfDestructWarning: 'WARNING: SELF-DESTRUCT INITIATED — DETONATION IN',
