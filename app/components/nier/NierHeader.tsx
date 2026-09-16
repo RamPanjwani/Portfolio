@@ -128,7 +128,7 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
               }}
             />
             <span className="truncate tracking-wider font-bold text-xs sm:text-sm">
-              {NAVIGATION_TABS.find((t) => activeTab === t.id || (t.id === 'photos' && activeTab === 'logs'))?.label || '[01] SYSTEM'}
+              {NAVIGATION_TABS.find((t) => activeTab === t.id || (t.id === 'photos' && activeTab === 'logs'))?.label || 'Home'}
             </span>
           </div>
 

@@ -1,12 +1,12 @@
 import { NavigationTab, HudConfig, FooterConfig } from './types';
 
 export const NAVIGATION_TABS: NavigationTab[] = [
-  { id: 'system', label: '[01] SYSTEM', sub: 'Profile & Status' },
-  { id: 'arsenal', label: '[02] ARSENAL', sub: 'Weapons & Work' },
-  { id: 'chips', label: '[03] CHIPS', sub: 'Skills & Plug-ins' },
-  { id: 'photos', label: '[04] PHOTOS', sub: 'Optical Archives' },
-  { id: 'intel', label: '[05] INTEL', sub: 'Archives & Notes' },
-  { id: 'comm', label: '[06] COMM', sub: 'Transmission' },
+  { id: 'system', label: 'Home', sub: 'Profile & Status' },
+  { id: 'arsenal', label: 'Projects', sub: 'Weapons & Work' },
+  { id: 'chips', label: 'Blog', sub: 'Skills & Plug-ins' },
+  { id: 'photos', label: 'Photos', sub: 'Optical Archives' },
+  { id: 'intel', label: 'Intel', sub: 'Archives & Notes' },
+  { id: 'comm', label: 'Connect', sub: 'Transmission' },
 ];
 
 export const FOOTER_CONFIG: FooterConfig = {
