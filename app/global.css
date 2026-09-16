@@ -705,5 +705,14 @@ html, body {
 .stagger-11 { animation-delay: 0.42s; }
 .stagger-12 { animation-delay: 0.46s; }
 
-
-
+/* Mobile Navigation Header Pip (Dark in Light Mode, Light in Dark Mode) */
+.nier-menu-pip {
+  background-color: #3f3d36;
+}
+.nier-menu-pip-open {
+  background-color: #dad4bb;
+}
+.dark .nier-menu-pip,
+.dark .nier-menu-pip-open {
+  background-color: #eae5d2 !important;
+}

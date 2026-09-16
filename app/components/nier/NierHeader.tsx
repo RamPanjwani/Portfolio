@@ -112,7 +112,12 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
           aria-label="Toggle Navigation Menu"
         >
           <div className="flex items-center gap-2 min-w-0">
-            <span className={`w-2.5 h-2.5 shrink-0 ${menuOpen ? 'bg-[#dad4bb]' : 'bg-[#4e4b42] dark:bg-[#dad4bb]'}`} />
+            <span
+              className={`w-2.5 h-2.5 shrink-0 transition-colors ${menuOpen ? 'nier-menu-pip-open' : 'nier-menu-pip'}`}
+              style={{
+                backgroundColor: theme === 'dark' ? '#eae5d2' : (menuOpen ? '#dad4bb' : '#3f3d36'),
+              }}
+            />
             <span className="truncate tracking-wider font-bold text-xs sm:text-sm">
               {NAVIGATION_TABS.find((t) => activeTab === t.id || (t.id === 'photos' && activeTab === 'logs'))?.label || '[01] SYSTEM'}
             </span>
