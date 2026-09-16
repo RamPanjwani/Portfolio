@@ -733,3 +733,54 @@ html, body {
 .dark .nier-menu-pip-open {
   background-color: #eae5d2 !important;
 }
+
+/* Reduced Motion / Animation Suppression Mode */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
+
+.reduce-motion .nier-slide-in,
+.reduce-motion .nier-title-slide,
+.reduce-motion .nier-slide-from-left,
+.reduce-motion .nier-slide-left,
+.reduce-motion .nier-slide-right {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.reduce-motion .animate-spin,
+.reduce-motion .animate-pulse,
+.reduce-motion .animate-bounce {
+  animation: none !important;
+}
+
+.reduce-motion .glitch-text::before,
+.reduce-motion .glitch-text::after {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nier-slide-in,
+  .nier-title-slide,
+  .nier-slide-from-left,
+  .nier-slide-left,
+  .nier-slide-right {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .animate-spin,
+  .animate-pulse,
+  .animate-bounce {
+    animation: none !important;
+  }
+  .glitch-text::before,
+  .glitch-text::after {
+    display: none !important;
+  }
+}

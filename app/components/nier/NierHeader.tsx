@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { NierButton } from './NierButton';
 import { nierAudio } from './NierAudio';
-import { Volume2, VolumeX, Monitor, Sun, Moon, Menu, X } from 'lucide-react';
+import { Volume2, VolumeX, Monitor, Sun, Moon, Menu, X, Zap, ZapOff } from 'lucide-react';
 
 interface NierHeaderProps {
   activeTab: string;
@@ -13,6 +13,8 @@ interface NierHeaderProps {
   onReboot: () => void;
   theme: 'light' | 'dark';
   onToggleTheme: () => void;
+  reduceAnimations: boolean;
+  onToggleReduceAnimations: () => void;
 }
 
 import { NAVIGATION_TABS} from '../../data/navigation';
@@ -25,6 +27,8 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
   onReboot,
   theme,
   onToggleTheme,
+  reduceAnimations,
+  onToggleReduceAnimations,
 }) => {
   const [audioActive, setAudioActive] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -92,6 +96,24 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
               <Sun className="w-3.5 h-3.5 text-[#cd664d]" />
             )}
             <span><span className="hidden xs:inline">THEME: </span>{theme === 'dark' ? 'DARK' : 'LIGHT'}</span>
+          </button>
+
+          {/* Reduce Animations Toggle */}
+          <button
+            onClick={onToggleReduceAnimations}
+            className={`flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-2 py-0.5 border text-[10px] sm:text-[11px] font-bold transition-colors ${
+              reduceAnimations
+                ? 'bg-[#4e4b42] text-[#dad4bb] border-[#4e4b42]'
+                : 'bg-[#dad4bb] text-[#4e4b42] border-[#b4af9a] hover:bg-[#4e4b42] hover:text-[#dad4bb]'
+            }`}
+            title={`Animations: ${reduceAnimations ? 'Reduced (Minimal motion, instant transitions)' : 'Standard (Smooth motion & glitch decoding)'}. Click to toggle.`}
+          >
+            {reduceAnimations ? (
+              <ZapOff className="w-3.5 h-3.5 text-[#cd664d]" />
+            ) : (
+              <Zap className="w-3.5 h-3.5 text-[#cd664d]" />
+            )}
+            <span><span className="hidden xs:inline">ANIM: </span>{reduceAnimations ? 'REDUCED' : 'NORMAL'}</span>
           </button>
 
           </div>

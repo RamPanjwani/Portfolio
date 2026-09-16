@@ -10,6 +10,7 @@ interface ShuffleTextProps {
   charFrames?: number;
   charFrameTime?: number;
   duration?: number;
+  disabled?: boolean;
 }
 
 const BASE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=~';
@@ -72,9 +73,30 @@ export const ShuffleText: React.FC<ShuffleTextProps> = ({
   charIncInterval,
   charFrames = 10,
   charFrameTime = 35,
+  disabled = false,
 }) => {
   const targetText = text || '';
   
+  // Detect if reduced motion is active
+  const [isReducedMotion, setIsReducedMotion] = useState<boolean>(() => {
+    if (typeof document !== 'undefined') {
+      return document.documentElement.classList.contains('reduce-motion');
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const updateMotion = () => {
+      if (typeof document !== 'undefined') {
+        setIsReducedMotion(document.documentElement.classList.contains('reduce-motion'));
+      }
+    };
+    updateMotion();
+    const observer = new MutationObserver(updateMotion);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
+
   // Calculate a cinematic cadence matching NieR Automata
   const effectiveInterval =
     charIncInterval ??
@@ -88,7 +110,7 @@ export const ShuffleText: React.FC<ShuffleTextProps> = ({
 
   const startAnimation = () => {
     if (timerRef.current) clearInterval(timerRef.current);
-    if (!targetText) {
+    if (!targetText || disabled || isReducedMotion) {
       setRevealedCount(0);
       return;
     }
@@ -108,12 +130,22 @@ export const ShuffleText: React.FC<ShuffleTextProps> = ({
   };
 
   useEffect(() => {
-    startAnimation();
+    if (!disabled && !isReducedMotion) {
+      startAnimation();
+    }
 
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [targetText]);
+  }, [targetText, disabled, isReducedMotion]);
+
+  if (disabled || isReducedMotion) {
+    return (
+      <span className={`shuffle-text pointer-events-none select-none ${className}`}>
+        {targetText}
+      </span>
+    );
+  }
 
   // Split into tokens (words and whitespaces) to keep line-wrapping natural
   const tokens = targetText.split(/(\s+)/);

@@ -23,6 +23,50 @@ function PortfolioContent() {
   const [isBooting, setIsBooting] = useState<boolean>(!noBoot);
   const [showContent, setShowContent] = useState<boolean>(noBoot);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [reduceAnimations, setReduceAnimations] = useState<boolean>(false);
+
+  // Hydrate reduceAnimations on mount & respond to system preference
+  useEffect(() => {
+    const saved = localStorage.getItem('nier_reduce_motion');
+    const systemPrefersReduced =
+      typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const effectiveReduced = saved !== null ? saved === 'true' : systemPrefersReduced;
+    setReduceAnimations(effectiveReduced);
+    if (effectiveReduced) {
+      document.documentElement.classList.add('reduce-motion');
+    } else {
+      document.documentElement.classList.remove('reduce-motion');
+    }
+
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const handleMotionChange = (e: MediaQueryListEvent) => {
+      const currentSaved = localStorage.getItem('nier_reduce_motion');
+      if (currentSaved === null) {
+        setReduceAnimations(e.matches);
+        if (e.matches) {
+          document.documentElement.classList.add('reduce-motion');
+        } else {
+          document.documentElement.classList.remove('reduce-motion');
+        }
+      }
+    };
+
+    mediaQuery.addEventListener('change', handleMotionChange);
+    return () => mediaQuery.removeEventListener('change', handleMotionChange);
+  }, []);
+
+  const toggleReduceAnimations = () => {
+    const next = !reduceAnimations;
+    setReduceAnimations(next);
+    localStorage.setItem('nier_reduce_motion', String(next));
+    if (next) {
+      document.documentElement.classList.add('reduce-motion');
+    } else {
+      document.documentElement.classList.remove('reduce-motion');
+    }
+    nierAudio.playSelect();
+  };
 
   // Hydrate theme on mount & respond to device/browser theme
   useEffect(() => {
@@ -180,6 +224,8 @@ function PortfolioContent() {
             }}
             theme={theme}
             onToggleTheme={toggleTheme}
+            reduceAnimations={reduceAnimations}
+            onToggleReduceAnimations={toggleReduceAnimations}
           />
 
           {showContent && (
