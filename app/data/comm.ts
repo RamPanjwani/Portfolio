@@ -22,9 +22,23 @@ export const UPLINK_CHANNELS: UplinkChannel[] = [
   {
     id: 'linkedin',
     title: 'LINKEDIN NETWORK',
-    handle: 'in/ram-panjwani',
-    url: 'https://linkedin.com/in/ram-panjwani',
+    handle: 'in/rampanjwani',
+    url: 'https://www.linkedin.com/in/rampanjwani/',
     iconName: 'Linkedin',
+  },
+  {
+    id: 'x',
+    title: 'X // TRANSMISSIONS',
+    handle: 'x.com/rampanjwanii',
+    url: 'https://x.com/rampanjwanii',
+    iconName: 'X',
+  },
+  {
+    id: 'resume',
+    title: 'OPERATIONAL DOSSIER // RESUME',
+    handle: 'Google Drive Document',
+    url: 'https://drive.google.com/file/d/1QksARWDbHkGOs-MI3GCfszoGe4vK__4k/view?usp=drive_link',
+    iconName: 'Resume',
   },
   {
     id: 'mail',

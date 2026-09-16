@@ -102,7 +102,7 @@ export interface UplinkChannel {
   title: string;
   handle: string;
   url: string;
-  iconName: 'Github' | 'Linkedin' | 'Mail';
+  iconName: 'Github' | 'Linkedin' | 'Mail' | 'X' | 'Resume';
 }
 
 export interface CommConfig {

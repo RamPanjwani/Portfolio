@@ -5,8 +5,8 @@ import { NierSectionHeader } from './NierSectionHeader';
 import { NierCard } from './NierCard';
 import { NierButton } from './NierButton';
 import { nierAudio } from './NierAudio';
-import { Mail, Send, Radio, AlertTriangle, CheckCircle2 } from 'lucide-react';
-import { GithubIcon, LinkedinIcon } from './NierIcons';
+import { Mail, Send, Radio, AlertTriangle, CheckCircle2, FileText } from 'lucide-react';
+import { GithubIcon, LinkedinIcon, XIcon } from './NierIcons';
 import { UPLINK_CHANNELS, COMM_CONFIG } from '../../data/comm';
 
 export const CommView: React.FC = () => {
@@ -61,6 +61,10 @@ export const CommView: React.FC = () => {
         return <GithubIcon className="w-4 h-4 text-[#4e4b42] group-hover:text-[#dad4bb] shrink-0" />;
       case 'Linkedin':
         return <LinkedinIcon className="w-4 h-4 text-[#4e4b42] group-hover:text-[#dad4bb] shrink-0" />;
+      case 'X':
+        return <XIcon className="w-4 h-4 text-[#4e4b42] group-hover:text-[#dad4bb] shrink-0" />;
+      case 'Resume':
+        return <FileText className="w-4 h-4 text-[#4e4b42] group-hover:text-[#dad4bb] shrink-0" />;
       case 'Mail':
       default:
         return <Mail className="w-4 h-4 text-[#4e4b42] group-hover:text-[#dad4bb] shrink-0" />;
