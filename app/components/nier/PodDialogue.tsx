@@ -3,17 +3,9 @@
 import React, { useState } from 'react';
 import { ShuffleText } from './ShuffleText';
 import { nierAudio } from './NierAudio';
-import { Terminal, RefreshCw, Volume2, ShieldAlert } from 'lucide-react';
-
-const POD_MESSAGES = [
-  "Pod 042 to User: Unit Ram Panjwani is an elite Full-Stack & Systems Engineer specializing in graph-native intelligence and agentic architectures.",
-  "Tactical Assessment: Project NEXUS eliminates criminal intelligence bottlenecks via Neo4j entity resolution with 100% precision across 296 unit tests.",
-  "Environmental Scan: Project SAMUDRA / ORCA operationalizes ISRO oceanographic datasets for coastal safety with deterministic reasoning engines.",
-  "System Analysis: Project CommonGround transforms citizen voice audio across Indian regional vernaculars into verifiable public infrastructure demand hotspots.",
-  "Directive: Extreme preference observed for Vim modal keybindings, static type safety, and zero-hallucination deterministic architectures.",
-  "Warning: Self-destruct function located in COMM sector. Accessing will disrupt terminal display buffers.",
-  "Pod 042 Notice: All YoRHa interface assets adhere strictly to Hisayoshi Kijima's warm beige and musical score UI specifications."
-];
+import { Terminal, RefreshCw } from 'lucide-react';
+import { POD_MESSAGES } from '../../data/pod';
+import { NierCard } from './NierCard';
 
 export const PodDialogue: React.FC = () => {
   const [index, setIndex] = useState(0);
@@ -24,19 +16,16 @@ export const PodDialogue: React.FC = () => {
   };
 
   return (
-    <div className="relative border border-[#4e4b42] bg-[#dad4bb]/90 p-3 shadow-[2px_2px_0px_#b4af9a] mb-6">
-      {/* Corner brackets */}
-      <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-[#4e4b42] pointer-events-none" />
-      <div className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-[#4e4b42] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-[#4e4b42] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-[#4e4b42] pointer-events-none" />
-
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#4e4b42] border-b border-[#b4af9a] pb-1 w-full">
-          <span className="inline-block w-2 h-2 bg-[#cd664d] animate-ping" />
-          <Terminal className="w-3.5 h-3.5 text-[#4e4b42]" />
-          <span>POD 042 // TACTICAL TRANSMISSION</span>
-          <span className="text-[#89a87d] ml-auto font-mono text-[10px] uppercase">[LINK: ACTIVE]</span>
+    <NierCard
+      cornerBrackets={true}
+      className="p-3 mb-6"
+    >
+      <div className="flex items-start justify-between gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-mono font-bold tracking-widest text-[#4e4b42] border-b border-[#b4af9a] pb-1 w-full min-w-0">
+          <span className="inline-block w-2 h-2 bg-[#cd664d] animate-ping shrink-0" />
+          <Terminal className="w-3.5 h-3.5 text-[#4e4b42] shrink-0" />
+          <span className="truncate">POD 042 <span className="hidden xs:inline">// TACTICAL TRANSMISSION</span></span>
+          <span className="text-[#89a87d] ml-auto font-mono text-[9px] sm:text-[10px] uppercase shrink-0">[ONLINE]</span>
         </div>
 
         <button
@@ -53,6 +42,6 @@ export const PodDialogue: React.FC = () => {
         <span className="text-[#cd664d] font-bold mr-1.5">&gt;</span>
         <ShuffleText key={index} text={POD_MESSAGES[index]} duration={350} />
       </div>
-    </div>
+    </NierCard>
   );
 };

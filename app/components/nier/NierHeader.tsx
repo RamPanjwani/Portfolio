@@ -16,14 +16,7 @@ interface NierHeaderProps {
   onToggleTheme: () => void;
 }
 
-const TABS = [
-  { id: 'system', label: '[01] SYSTEM', sub: 'Profile & Status' },
-  { id: 'arsenal', label: '[02] ARSENAL', sub: 'Weapons & Work' },
-  { id: 'chips', label: '[03] CHIPS', sub: 'Skills & Plug-ins' },
-  { id: 'logs', label: '[04] LOGS', sub: 'Mission Quests' },
-  { id: 'intel', label: '[05] INTEL', sub: 'Archives & Notes' },
-  { id: 'comm', label: '[06] COMM', sub: 'Transmission' },
-];
+import { NAVIGATION_TABS} from '../../data/navigation';
 
 export const NierHeader: React.FC<NierHeaderProps> = ({
   activeTab,
@@ -64,25 +57,10 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
     <header className="w-full space-y-3 select-none">
       {/* Top HUD Telemetry Bar */}
       <div className="flex flex-wrap items-center justify-between border-b border-[#b4af9a] pb-2 text-xs text-[#57544a] gap-2 font-mono">
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5 font-bold text-[#4e4b42]">
-            <span className="w-2 h-2 bg-[#cd664d] animate-pulse" />
-            <span>YoRHa HUD // VER 1.0.4</span>
-          </div>
-          <span className="hidden sm:inline opacity-60">|</span>
-          <span className="hidden sm:inline">
-            OPERATIONAL UNIT: <strong className="text-[#3f3d36]">RAM PANJWANI</strong>
-          </span>
-          <span className="hidden md:inline opacity-60">|</span>
-          <span className="hidden md:inline">
-            SECTOR: <strong className="text-[#3f3d36]">IN // UTC+05:30</strong>
-          </span>
-        </div>
-
         {/* Realtime Telemetry Controls */}
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
           {timeStr && (
-            <span className="bg-[#dad4bb] px-2 py-0.5 border border-[#b4af9a] text-[11px] font-bold text-[#3f3d36]">
+            <span className="bg-[#dad4bb] px-1.5 sm:px-2 py-0.5 border border-[#b4af9a] text-[10px] sm:text-[11px] font-bold text-[#3f3d36]">
               {timeStr}
             </span>
           )}
@@ -90,7 +68,7 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
           {/* Sound Toggle */}
           <button
             onClick={handleAudioToggle}
-            className={`flex items-center gap-1 px-2 py-0.5 border text-[11px] font-bold transition-colors ${
+            className={`flex items-center gap-1 px-1.5 sm:px-2 py-0.5 border text-[10px] sm:text-[11px] font-bold transition-colors ${
               audioActive
                 ? 'bg-[#4e4b42] text-[#dad4bb] border-[#4e4b42]'
                 : 'bg-[#dad4bb] text-[#57544a] border-[#b4af9a]'
@@ -98,7 +76,7 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
             title="Toggle Procedural Web Audio Sound FX"
           >
             {audioActive ? <Volume2 className="w-3 h-3" /> : <VolumeX className="w-3 h-3" />}
-            <span>{audioActive ? 'AUDIO: ON' : 'MUTED'}</span>
+            <span><span className="hidden xs:inline">AUDIO: </span>{audioActive ? 'ON' : 'MUTED'}</span>
           </button>
 
           {/* CRT Filter Toggle */}
@@ -118,7 +96,7 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
           {/* Theme Toggle (Light / Dark Mode) */}
           <button
             onClick={onToggleTheme}
-            className={`flex items-center gap-1.5 px-2 py-0.5 border text-[11px] font-bold transition-colors ${
+            className={`flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-2 py-0.5 border text-[10px] sm:text-[11px] font-bold transition-colors ${
               theme === 'dark'
                 ? 'bg-[#38362f] text-[#dad4bb] border-[#b4af9a]'
                 : 'bg-[#dad4bb] text-[#4e4b42] border-[#b4af9a] hover:bg-[#4e4b42] hover:text-[#dad4bb]'
@@ -130,19 +108,10 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
             ) : (
               <Sun className="w-3.5 h-3.5 text-[#cd664d]" />
             )}
-            <span>{theme === 'dark' ? 'THEME: DARK' : 'THEME: LIGHT'}</span>
+            <span><span className="hidden xs:inline">THEME: </span>{theme === 'dark' ? 'DARK' : 'LIGHT'}</span>
           </button>
 
-          {/* Reboot Sequence Button */}
-          <button
-            onClick={onReboot}
-            className="flex items-center gap-1 px-2 py-0.5 border text-[11px] font-bold bg-[#dad4bb] text-[#57544a] border-[#b4af9a] hover:bg-[#4e4b42] hover:text-[#dad4bb] transition-colors"
-            title="Reboot YoRHa System"
-          >
-            <Radio className="w-3 h-3 text-[#cd664d]" />
-            <span className="hidden sm:inline">BOOT LOGS</span>
-          </button>
-        </div>
+          </div>
       </div>
 
       {/* Main Navigation Row with Musical Score Bar */}
@@ -153,16 +122,16 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
         </div>
 
         {/* Navigation Tabs */}
-        <nav className="flex-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
-          {TABS.map((tab) => {
-            const isActive = activeTab === tab.id;
+        <nav className="flex-1 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1.5 sm:gap-2">
+          {NAVIGATION_TABS.map((tab) => {
+            const isActive = activeTab === tab.id || (tab.id === 'photos' && activeTab === 'logs');
             return (
               <NierButton
                 key={tab.id}
                 active={isActive}
                 variant={isActive ? 'primary' : 'secondary'}
                 onClick={() => onTabChange(tab.id)}
-                className="text-xs"
+                className="text-[11px] sm:text-xs"
               >
                 <span>{tab.label}</span>
               </NierButton>

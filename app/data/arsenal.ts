@@ -1,0 +1,108 @@
+import { ProjectItem } from './types';
+
+export const PROJECTS: ProjectItem[] = [
+  {
+    id: 'nexus',
+    code: 'WP-01 // BLADE',
+    name: 'NEXUS — Criminal Network Intelligence',
+    classification: 'MHA / NCRB // SIH 2026',
+    level: 'LV. 4 [MAX]',
+    tagline: 'Evidence-grounded, graph-native investigative intelligence workspace for law enforcement.',
+    description:
+      'Solves critical intelligence-extraction bottlenecks in police investigations of cross-jurisdictional syndicates. Fuses CDRs, suspect aliases, FIR records, and mule bank accounts into an explainable graph with deterministic entity resolution.',
+    attackPower: '331 TESTS [296 PYTEST + 35 VITEST]',
+    durability: '100% ER PRECISION',
+    affinity: 'GRAPH // NEO4J // FASTAPI',
+    techStack: ['Neo4j', 'FastAPI', 'Python', 'PostgreSQL', 'Docker', 'Vite', 'TypeScript', 'TailwindCSS'],
+    metrics: [
+      '296 Automated Pytest Suites Passed',
+      '35 Vitest Frontend Tests Passed',
+      '100% Entity Resolution Precision on Benchmark Datasets',
+      'Zero-Loss Cross-Department Record Linkage',
+    ],
+    highlights: [
+      'Multi-source graph ingestion from unstructured police FIRs and call records',
+      'Deterministic rule-based entity resolution eliminating false positive arrests',
+      'Interactive investigative canvas for tactical syndicate topology visualization',
+    ],
+    githubUrl: 'https://github.com/RamPanjwani',
+  },
+  {
+    id: 'samudra',
+    code: 'WP-02 // SPEAR',
+    name: 'ORCA / SAMUDRA — Marine Intelligence',
+    classification: 'ISRO / DEPT OF SPACE // SIH 2026',
+    level: 'LV. 4 [MAX]',
+    tagline: 'Agentic AI-powered Marine Intelligence & Mission Reasoning Platform.',
+    description:
+      'Empowers coastal fishermen, vessel skippers, and disaster management authorities to query ocean conditions in vernacular languages (Hindi, Marathi, Tamil) and receive deterministic, evidence-backed geospatial safety recommendations.',
+    attackPower: 'MULTI-AGENT REASONING',
+    durability: 'REAL-TIME SATELLITE FUSION',
+    affinity: 'ISRO MOSDAC // INCOIS // GEOSPATIAL',
+    techStack: ['Python', 'LangChain', 'FastAPI', 'GIS / GDAL', 'React', 'ISRO MOSDAC API', 'INCOIS', 'WebSockets'],
+    metrics: [
+      'Direct satellite data fusion from ISRO MOSDAC & INCOIS',
+      'Vernacular speech & text queries in 4+ Indian languages',
+      'Deterministic safety corridors preventing cyclone and high-swell accidents',
+      'Transparent audit trail and provenance tracking for every recommendation',
+    ],
+    highlights: [
+      'Collaborative agent architecture splitting domain reasoning from geospatial crunching',
+      'Offline-capable caching protocols for maritime vessels with intermittent telemetry',
+      'Government compliance with National Disaster Management Authority (NDMA) schemas',
+    ],
+    githubUrl: 'https://github.com/RamPanjwani',
+  },
+  {
+    id: 'civicpulse',
+    code: 'WP-03 // COMBAT BRACER',
+    name: 'CommonGround // CivicPulse',
+    classification: 'BUILD WITH AI // SECOND EDITION',
+    level: 'LV. 4 [MAX]',
+    tagline: 'Multimodal Community Demand Intelligence Digital Public Good.',
+    description:
+      'Transforms fragmented citizen voice, photo, and text reports into verified Demand Hotspots, fusing citizen demand with Census of India demographics to generate deterministic 0–100 priority scores for policymakers.',
+    attackPower: 'DETERMINISTIC 0-100 ENGINE',
+    durability: 'CROSS-BORDER BRICS READY',
+    affinity: 'GEMINI 3.6 // SARVAM AI // CENSUS',
+    techStack: ['Google Gemini 3.6', 'Sarvam AI', 'Python', 'Next.js', 'PostGIS', 'Census Demographics Engine'],
+    metrics: [
+      'Sarvam AI speech-to-text ingestion for regional Indian vernaculars',
+      'Multimodal photographic damage verification via Gemini',
+      'Spatial clustering of reports into 150m-500m localized hotspots',
+      'Deterministic 0-100 priority scoring formula eliminating LLM hallucination',
+    ],
+    highlights: [
+      'Decoupled country and language adapters demonstrating portability to BRICS contexts',
+      'Automated generation of actionable policy and public funding pathway briefs',
+      'Census data fusion integrating vulnerability indices and asset condition ratings',
+    ],
+    githubUrl: 'https://github.com/RamPanjwani',
+  },
+  {
+    id: 'nier-design',
+    code: 'WP-04 // POD PROGRAM',
+    name: 'NieR:Automata YoRHa Design System',
+    classification: 'OPEN SOURCE // PLATINUMGAMES SPEC',
+    level: 'LV. 4 [MAX]',
+    tagline: 'High-fidelity military HUD and design language adhering to Hisayoshi Kijima devblog principles.',
+    description:
+      'Built upon official PlatinumGames devblog notes: warm beige color harmonies, musical score motifs, razor-expanding button borders, Web Audio sound synthesis, CRT lens distortion, and angled screen transition shaders.',
+    attackPower: 'WEB AUDIO REALTIME SYNTHESIS',
+    durability: 'PIXEL-PERFECT ACCURACY',
+    affinity: 'NEXT.JS // TAILWINDCSS // CANVAS',
+    techStack: ['Next.js', 'React 19', 'TypeScript', 'Web Audio API', 'TailwindCSS', 'SCSS', 'Framer Motion'],
+    metrics: [
+      'Zero audio asset weight via Web Audio oscillator math',
+      'Exact color fidelity: #d1cdb7, #dad4bb, #57544a, #cd664d',
+      'Full responsive adaptation for desktop, tablet, and mobile displays',
+      'Accessible keyboard navigation with tactile sound and cipher decryption',
+    ],
+    highlights: [
+      'Tactile hover states with splitting razor border physics',
+      'Dynamic cipher scramble text decoding algorithm',
+      'Complete modular design system ready for deployment in modern web applications',
+    ],
+    githubUrl: 'https://github.com/RamPanjwani',
+  },
+];

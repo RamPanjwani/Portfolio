@@ -39,7 +39,7 @@ export const PagesTemplate: React.FC<PagesTemplateProps> = ({
 
       {/* Optional In-Page Footer Guide bar from PagesTemplate */}
       {footer && (
-        <div className="w-full border-t border-[#b4af9a] pt-3 flex items-center gap-3 text-xs text-[#57544a] dark:text-[#a39e8a] nier-slide-in stagger-6">
+        <div className="w-full border-t border-[#b4af9a] pt-3 flex items-center gap-3 text-xs text-[#57544a] nier-slide-in stagger-6">
           <NierBar height="20px" dark={true} />
           <span className="font-mono tracking-wide">{footer}</span>
         </div>

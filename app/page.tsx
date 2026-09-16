@@ -8,32 +8,68 @@ import { NierBootScreen } from './components/nier/NierBootScreen';
 import { SystemView } from './components/nier/SystemView';
 import { ArsenalView } from './components/nier/ArsenalView';
 import { ChipsView } from './components/nier/ChipsView';
-import { LogsView } from './components/nier/LogsView';
+import { PhotosView } from './components/nier/PhotosView';
 import { IntelView } from './components/nier/IntelView';
 import { CommView } from './components/nier/CommView';
 import { nierAudio } from './components/nier/NierAudio';
 
 function PortfolioContent() {
   const searchParams = useSearchParams();
-  const initialTab = searchParams.get('tab') || 'system';
+  const rawTab = searchParams.get('tab') || 'system';
+  const initialTab = rawTab === 'logs' ? 'photos' : rawTab;
   const [activeTab, setActiveTab] = useState<string>(
-    ['system', 'arsenal', 'chips', 'logs', 'intel', 'comm'].includes(initialTab) ? initialTab : 'system'
+    ['system', 'arsenal', 'chips', 'photos', 'logs', 'intel', 'comm'].includes(initialTab) ? initialTab : 'system'
   );
   const [crtEnabled, setCrtEnabled] = useState<boolean>(true);
   const [isBooting, setIsBooting] = useState<boolean>(searchParams.get('noboot') !== 'true');
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
-  // Hydrate theme on mount
+  // Hydrate theme on mount & respond to device/browser theme
   useEffect(() => {
     const themeParam = searchParams.get('theme');
     const saved = localStorage.getItem('nier_theme') as 'light' | 'dark' | null;
-    if (themeParam === 'dark' || saved === 'dark' || (!saved && !themeParam && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      setTheme('dark');
+
+    const getSystemTheme = (): 'light' | 'dark' => {
+      if (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+      return 'light';
+    };
+
+    let effectiveTheme: 'light' | 'dark';
+    if (themeParam === 'dark' || themeParam === 'light') {
+      effectiveTheme = themeParam;
+    } else if (saved === 'dark' || saved === 'light') {
+      effectiveTheme = saved;
+    } else {
+      effectiveTheme = getSystemTheme();
+    }
+
+    setTheme(effectiveTheme);
+    if (effectiveTheme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
-      setTheme('light');
       document.documentElement.classList.remove('dark');
     }
+
+    // Listen to device/browser color scheme changes if not explicitly overridden
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleSystemThemeChange = (e: MediaQueryListEvent) => {
+      const currentSaved = localStorage.getItem('nier_theme');
+      const currentParam = searchParams.get('theme');
+      if (!currentSaved && !currentParam) {
+        const newTheme = e.matches ? 'dark' : 'light';
+        setTheme(newTheme);
+        if (newTheme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }
+    };
+
+    mediaQuery.addEventListener('change', handleSystemThemeChange);
+    return () => mediaQuery.removeEventListener('change', handleSystemThemeChange);
   }, [searchParams]);
 
   const toggleTheme = () => {
@@ -50,8 +86,12 @@ function PortfolioContent() {
 
   useEffect(() => {
     const tabParam = searchParams.get('tab');
-    if (tabParam && ['system', 'arsenal', 'chips', 'logs', 'intel', 'comm'].includes(tabParam)) {
-      setActiveTab(tabParam);
+    if (tabParam) {
+      if (tabParam === 'logs') {
+        setActiveTab('photos');
+      } else if (['system', 'arsenal', 'chips', 'photos', 'intel', 'comm'].includes(tabParam)) {
+        setActiveTab(tabParam);
+      }
     }
   }, [searchParams]);
 
@@ -77,7 +117,7 @@ function PortfolioContent() {
           nierAudio.playSelect();
           break;
         case '4':
-          setActiveTab('logs');
+          setActiveTab('photos');
           nierAudio.playSelect();
           break;
         case '5':
@@ -123,8 +163,8 @@ function PortfolioContent() {
       )}
 
       {/* Main Container */}
-      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 flex flex-col justify-between">
-        <div className="space-y-6">
+      <div className="w-full max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-6 flex-1 flex flex-col justify-between">
+        <div className="space-y-4 sm:space-y-6">
           <NierHeader
             activeTab={activeTab}
             onTabChange={handleTabChange}
@@ -139,13 +179,11 @@ function PortfolioContent() {
             {activeTab === 'system' && <SystemView onNavigate={handleTabChange} />}
             {activeTab === 'arsenal' && <ArsenalView />}
             {activeTab === 'chips' && <ChipsView />}
-            {activeTab === 'logs' && <LogsView />}
+            {(activeTab === 'photos' || activeTab === 'logs') && <PhotosView />}
             {activeTab === 'intel' && <IntelView />}
             {activeTab === 'comm' && <CommView />}
           </main>
         </div>
-
-        <NierFooter />
       </div>
     </div>
   );

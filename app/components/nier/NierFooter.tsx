@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { NierBar } from './NierBar';
+import { FOOTER_CONFIG } from '../../data/navigation';
 
 export const NierFooter: React.FC = () => {
   return (
@@ -25,27 +26,31 @@ export const NierFooter: React.FC = () => {
           <NierBar height="24px" dark={false} />
           <div className="space-y-0.5">
             <p className="font-bold text-[#3f3d36] text-xs">
-              RAM PANJWANI // SYSTEM PORTFOLIO
+              {FOOTER_CONFIG.unitName} // {FOOTER_CONFIG.systemTitle}
             </p>
             <p className="text-[11px] text-[#57544a]">
-              TRIBUTE TO YOKO TARO & HISAYOSHI KIJIMA (PLATINUMGAMES)
+              {FOOTER_CONFIG.tributeNotice}
             </p>
           </div>
         </div>
 
         {/* Controller / Keyboard guidance shortcuts */}
-        <div className="flex flex-wrap items-center gap-3 text-[11px] bg-[#dad4bb] border border-[#b4af9a] px-3 py-1.5 shadow-[2px_2px_0px_#b4af9a]">
-          <span className="font-bold text-[#4e4b42]">[1 - 6] DIRECT JUMP</span>
-          <span>//</span>
-          <span className="font-bold text-[#4e4b42]">[CLICK] EXECUTE</span>
-          <span>//</span>
-          <span className="font-bold text-[#89a87d]">POD 042: ONLINE</span>
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[10px] sm:text-[11px] bg-[#dad4bb] border border-[#b4af9a] px-2.5 sm:px-3 py-1 sm:py-1.5 shadow-[2px_2px_0px_#b4af9a]">
+          {FOOTER_CONFIG.shortcuts.map((sc, i) => (
+            <React.Fragment key={sc.label}>
+              <span className="font-bold text-[#4e4b42]">
+                {sc.label} {sc.action}
+              </span>
+              <span>//</span>
+            </React.Fragment>
+          ))}
+          <span className="font-bold text-[#89a87d]">{FOOTER_CONFIG.statusIndicator}</span>
         </div>
       </div>
 
       {/* Philosophical quote */}
       <div className="text-center pt-2 text-[10px] text-[#57544a] italic opacity-80">
-        "Everything that lives is designed to end. We are perpetually trapped in a never-ending spiral of life and death."
+        {FOOTER_CONFIG.philosophicalQuote}
       </div>
     </footer>
   );

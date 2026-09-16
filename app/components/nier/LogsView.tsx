@@ -95,9 +95,9 @@ export const LogsView: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Authentic NieR Title & Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-baseline justify-between border-b border-[#b4af9a] pb-2 gap-2 nier-slide-in stagger-1">
-        <Title title="QUESTS" subtitle="- Mission Archives" />
-        <span className="text-xs font-mono text-[#57544a] dark:text-[#a39e8a] tracking-widest bg-[#dad4bb] dark:bg-[#23221e] px-2 py-1 border border-[#b4af9a]">
+      <div className="flex flex-col sm:flex-row items-start sm:items-baseline justify-between pb-1 gap-2 nier-slide-in stagger-1">
+        <Title title="QUESTS" />
+        <span className="text-xs font-mono text-[#57544a] tracking-widest bg-[#dad4bb] px-2 py-1 border border-[#b4af9a]">
           OPERATIONS: 03 CLEARED // 01 ACTIVE
         </span>
       </div>

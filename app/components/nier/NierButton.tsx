@@ -59,7 +59,7 @@ export const NierButton: React.FC<NierButtonProps> = ({
 
   const content = (
     <div
-      className={`group relative select-none font-mono text-sm tracking-wider uppercase inline-block w-full ${
+      className={`group relative select-none font-mono text-xs sm:text-sm tracking-wider uppercase inline-block w-full ${
         disabled ? 'opacity-40 cursor-not-allowed pointer-events-none' : 'cursor-pointer'
       } ${className}`}
       onMouseEnter={handleMouseEnter}
@@ -75,13 +75,13 @@ export const NierButton: React.FC<NierButtonProps> = ({
 
       {/* Main button block with sliding background and mechanical press physics */}
       <div
-        className={`relative z-10 flex items-center justify-between px-3 py-2 border nier-btn-surface active:scale-[0.98] active:translate-y-[1px] ${
+        className={`relative z-10 flex items-center justify-between px-2.5 sm:px-3 py-1.5 sm:py-2 border nier-btn-surface active:scale-[0.98] active:translate-y-[1px] ${
           isChecked ? 'active shadow-[2px_2px_0px_#b4af9a]' : ''
         } ${
           variant === 'alert' ? 'border-[#cd664d] text-[#cd664d]' : 'border-[#b4af9a]'
         }`}
       >
-        <div className="flex items-center gap-2.5 overflow-hidden">
+        <div className="flex items-center gap-1.5 sm:gap-2.5 overflow-hidden min-w-0">
           {/* Square indicator pip with reverse gradient slide & rotation */}
           <div
             className={`nier-pip shrink-0 ${
@@ -89,7 +89,7 @@ export const NierButton: React.FC<NierButtonProps> = ({
             }`}
           />
           {icon && <span className="shrink-0">{icon}</span>}
-          <span className="truncate font-semibold tracking-wide">
+          <span className="truncate font-semibold tracking-normal sm:tracking-wide">
             {text || children}
           </span>
         </div>
@@ -98,8 +98,8 @@ export const NierButton: React.FC<NierButtonProps> = ({
           <span
             className={`ml-2 text-xs px-1.5 py-0.2 border transition-colors ${
               isChecked
-                ? 'border-[#dad4bb] text-[#dad4bb] dark:border-[#181816] dark:text-[#181816]'
-                : 'border-[#57544a] text-[#57544a] dark:border-[#dad4bb] dark:text-[#dad4bb]'
+                ? 'border-[#dad4bb] text-[#dad4bb]'
+                : 'border-[#57544a] text-[#57544a]'
             }`}
           >
             {badge}

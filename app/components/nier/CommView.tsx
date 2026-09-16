@@ -1,11 +1,13 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Title } from './Title';
+import { NierSectionHeader } from './NierSectionHeader';
+import { NierCard } from './NierCard';
 import { NierButton } from './NierButton';
 import { nierAudio } from './NierAudio';
-import { Mail, Send, Radio, AlertTriangle, ShieldAlert, CheckCircle2 } from 'lucide-react';
+import { Mail, Send, Radio, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './NierIcons';
+import { UPLINK_CHANNELS, COMM_CONFIG } from '../../data/comm';
 
 export const CommView: React.FC = () => {
   const [formState, setFormState] = useState({
@@ -27,7 +29,6 @@ export const CommView: React.FC = () => {
     setTimeout(() => setSent(false), 6000);
   };
 
-  // Self-destruct easter egg
   const triggerSelfDestruct = () => {
     if (countdown !== null) return;
     nierAudio.playAlert();
@@ -43,7 +44,6 @@ export const CommView: React.FC = () => {
       }, 1000);
       return () => clearTimeout(timer);
     } else if (countdown === 0) {
-      // Boom glitch
       nierAudio.playGlitch();
       setOverloadGlitch(true);
       const rebootTimer = setTimeout(() => {
@@ -54,6 +54,18 @@ export const CommView: React.FC = () => {
       return () => clearTimeout(rebootTimer);
     }
   }, [countdown]);
+
+  const renderChannelIcon = (iconName: string) => {
+    switch (iconName) {
+      case 'Github':
+        return <GithubIcon className="w-4 h-4 text-[#4e4b42] group-hover:text-[#dad4bb] shrink-0" />;
+      case 'Linkedin':
+        return <LinkedinIcon className="w-4 h-4 text-[#4e4b42] group-hover:text-[#dad4bb] shrink-0" />;
+      case 'Mail':
+      default:
+        return <Mail className="w-4 h-4 text-[#4e4b42] group-hover:text-[#dad4bb] shrink-0" />;
+    }
+  };
 
   return (
     <div className="space-y-6 relative">
@@ -66,10 +78,10 @@ export const CommView: React.FC = () => {
               [CRITICAL ERROR: BLACK BOX OVERHEAT]
             </h2>
             <p className="text-xs text-[#dad4bb] leading-relaxed">
-              YoRHa OS visual drivers desynchronized. Internal thermal threshold exceeded (1,048°C).
+              {COMM_CONFIG.glitchMessage}
             </p>
             <div className="border border-[#b4af9a] p-2 text-[11px] text-[#89a87d]">
-              POD 042: "Emergency coolant deployed. Terminating rogue protocol. Restoring user interface..."
+              {COMM_CONFIG.podIntervention}
             </div>
           </div>
         </div>
@@ -79,35 +91,32 @@ export const CommView: React.FC = () => {
       {countdown !== null && countdown > 0 && (
         <div className="border-2 border-[#cd664d] bg-[#cd664d]/20 p-3 font-mono text-center animate-pulse">
           <span className="text-[#cd664d] font-bold text-sm tracking-widest">
-            ⚠️ WARNING: SELF-DESTRUCT INITIATED — DETONATION IN {countdown} SECONDS ⚠️
+            ⚠️ {COMM_CONFIG.selfDestructWarning} {countdown} SECONDS ⚠️
           </span>
         </div>
       )}
 
       {/* Authentic NieR Title & Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-baseline justify-between border-b border-[#b4af9a] pb-2 gap-2 nier-slide-in stagger-1">
-        <Title title="COMM" subtitle="- Direct Transmission" />
-        <span className="text-xs font-mono text-[#57544a] dark:text-[#a39e8a] tracking-widest bg-[#dad4bb] dark:bg-[#23221e] px-2 py-1 border border-[#b4af9a]">
-          FREQ: 142.85 MHz [SECURE]
-        </span>
-      </div>
+      <NierSectionHeader
+        title="COMM"
+      />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left: Contact Form */}
-        <div className="lg:col-span-7 border border-[#4e4b42] bg-[#dad4bb]/90 p-5 shadow-[3px_3px_0px_#b4af9a] space-y-4 nier-slide-in stagger-2">
-          <div className="border-b border-[#b4af9a] pb-2">
-            <span className="text-xs font-bold tracking-widest text-[#4e4b42] flex items-center gap-2 nier-title-shadow">
-              <Radio className="w-3.5 h-3.5 text-[#cd664d]" />
-              DISPATCH OPERATIONAL TRANSMISSION
-            </span>
-          </div>
-
+        <NierCard
+          staggerIndex={2}
+          headerIcon={<Radio className="w-3.5 h-3.5 text-[#cd664d]" />}
+          headerTitle="DISPATCH OPERATIONAL TRANSMISSION"
+          className="lg:col-span-7 space-y-4"
+        >
           {sent ? (
-            <div className="p-6 border border-[#89a87d] bg-[#d1cdb7] text-center space-y-2">
+            <div className="p-6 border border-[#89a87d] bg-[#eae5d2] text-center space-y-2">
               <CheckCircle2 className="w-8 h-8 text-[#89a87d] mx-auto" />
-              <h4 className="font-bold text-[#3f3d36] text-sm">TRANSMISSION ENCRYPTED & DISPATCHED</h4>
+              <h4 className="font-bold text-[#3f3d36] text-sm">
+                {COMM_CONFIG.confirmationNotice}
+              </h4>
               <p className="text-xs text-[#57544a]">
-                Unit Ram Panjwani has received your packet. Expect a reply within 24 operational hours.
+                {COMM_CONFIG.transmissionTarget}
               </p>
             </div>
           ) : (
@@ -122,7 +131,7 @@ export const CommView: React.FC = () => {
                   value={formState.senderName}
                   onChange={(e) => setFormState({ ...formState, senderName: e.target.value })}
                   placeholder="e.g. Commander White / Recruiter"
-                  className="w-full p-2 bg-[#d1cdb7] border border-[#b4af9a] text-[#3f3d36] focus:border-[#4e4b42] outline-none font-mono"
+                  className="w-full p-2 sm:p-2.5 bg-[#eae5d2] border border-[#b4af9a] text-[#3f3d36] focus:border-[#4e4b42] outline-none font-mono"
                 />
               </div>
 
@@ -136,7 +145,7 @@ export const CommView: React.FC = () => {
                   value={formState.senderEmail}
                   onChange={(e) => setFormState({ ...formState, senderEmail: e.target.value })}
                   placeholder="e.g. commander@yorha-hq.net"
-                  className="w-full p-2 bg-[#d1cdb7] border border-[#b4af9a] text-[#3f3d36] focus:border-[#4e4b42] outline-none font-mono"
+                  className="w-full p-2 sm:p-2.5 bg-[#eae5d2] border border-[#b4af9a] text-[#3f3d36] focus:border-[#4e4b42] outline-none font-mono"
                 />
               </div>
 
@@ -150,7 +159,7 @@ export const CommView: React.FC = () => {
                   value={formState.subject}
                   onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
                   placeholder="e.g. SIH 2026 / Architecture Collaboration"
-                  className="w-full p-2 bg-[#d1cdb7] border border-[#b4af9a] text-[#3f3d36] focus:border-[#4e4b42] outline-none font-mono"
+                  className="w-full p-2 sm:p-2.5 bg-[#eae5d2] border border-[#b4af9a] text-[#3f3d36] focus:border-[#4e4b42] outline-none font-mono"
                 />
               </div>
 
@@ -164,7 +173,7 @@ export const CommView: React.FC = () => {
                   value={formState.message}
                   onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                   placeholder="Input mission requirements, technical parameters, or queries..."
-                  className="w-full p-2 bg-[#d1cdb7] border border-[#b4af9a] text-[#3f3d36] focus:border-[#4e4b42] outline-none resize-none font-mono"
+                  className="w-full p-2 sm:p-2.5 bg-[#eae5d2] border border-[#b4af9a] text-[#3f3d36] focus:border-[#4e4b42] outline-none resize-none font-mono"
                 />
               </div>
 
@@ -178,78 +187,36 @@ export const CommView: React.FC = () => {
               </div>
             </form>
           )}
-        </div>
+        </NierCard>
 
-        {/* Right: Uplink Coordinates & Easter Egg - Each card slides individually */}
+        {/* Right: Uplink Coordinates & Easter Egg */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="border border-[#4e4b42] bg-[#dad4bb]/90 p-5 shadow-[3px_3px_0px_#b4af9a] space-y-3 text-xs nier-slide-in stagger-3">
-            <span className="font-bold tracking-widest text-[#4e4b42] block border-b border-[#b4af9a] pb-2 nier-title-shadow">
-              VERIFIED UPLINK CHANNELS
-            </span>
-
+          <NierCard
+            staggerIndex={3}
+            headerTitle="VERIFIED UPLINK CHANNELS"
+            className="space-y-3 text-xs"
+          >
             <div className="space-y-2">
-              <a
-                href="https://github.com/RamPanjwani"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-between p-2.5 bg-[#d1cdb7] border border-[#b4af9a] hover:border-[#4e4b42] hover:bg-[#4e4b42] hover:text-[#dad4bb] transition-all group"
-              >
-                <div className="flex items-center gap-2">
-                  <GithubIcon className="w-4 h-4 text-[#4e4b42] group-hover:text-[#dad4bb]" />
-                  <span className="font-bold">GITHUB REPOSITORIES</span>
-                </div>
-                <span className="text-[10px] opacity-70 font-mono">github.com/RamPanjwani</span>
-              </a>
-
-              <a
-                href="https://linkedin.com/in/ram-panjwani"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-between p-2.5 bg-[#d1cdb7] border border-[#b4af9a] hover:border-[#4e4b42] hover:bg-[#4e4b42] hover:text-[#dad4bb] transition-all group"
-              >
-                <div className="flex items-center gap-2">
-                  <LinkedinIcon className="w-4 h-4 text-[#4e4b42] group-hover:text-[#dad4bb]" />
-                  <span className="font-bold">LINKEDIN NETWORK</span>
-                </div>
-                <span className="text-[10px] opacity-70 font-mono">in/ram-panjwani</span>
-              </a>
-
-              <a
-                href="mailto:panjwaniram2004@gmail.com"
-                className="flex items-center justify-between p-2.5 bg-[#d1cdb7] border border-[#b4af9a] hover:border-[#4e4b42] hover:bg-[#4e4b42] hover:text-[#dad4bb] transition-all group"
-              >
-                <div className="flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-[#4e4b42] group-hover:text-[#dad4bb]" />
-                  <span className="font-bold">DIRECT MAIL UPLINK</span>
-                </div>
-                <span className="text-[10px] opacity-70 font-mono">panjwaniram2004@gmail.com</span>
-              </a>
+              {UPLINK_CHANNELS.map((channel) => (
+                <a
+                  key={channel.id}
+                  href={channel.url}
+                  target={channel.url.startsWith('http') ? '_blank' : undefined}
+                  rel={channel.url.startsWith('http') ? 'noreferrer' : undefined}
+                  className="flex flex-col sm:flex-row sm:items-center justify-between p-2.5 bg-[#eae5d2] border border-[#b4af9a] hover:border-[#4e4b42] hover:bg-[#4e4b42] hover:text-[#dad4bb] transition-all group gap-1"
+                >
+                  <div className="flex items-center gap-2">
+                    {renderChannelIcon(channel.iconName)}
+                    <span className="font-bold">{channel.title}</span>
+                  </div>
+                  <span className="text-[10px] opacity-70 font-mono sm:text-right truncate">
+                    {channel.handle}
+                  </span>
+                </a>
+              ))}
             </div>
-          </div>
-
-          {/* Yoko Taro "Weird UI" Self-Destruct Easter Egg */}
-          <div className="border border-[#cd664d] bg-[#dad4bb]/90 p-5 shadow-[3px_3px_0px_#cd664d] space-y-3 text-xs nier-slide-in stagger-4">
-            <div className="flex items-center justify-between text-[#cd664d] font-bold border-b border-[#cd664d]/40 pb-2">
-              <span className="flex items-center gap-1.5 nier-title-shadow">
-                <AlertTriangle className="w-4 h-4" />
-                <span>RESTRICTED PROTOCOL // YOKO TARO DIRECTIVE</span>
-              </span>
-              <span className="font-mono">[CLEARANCE: 0]</span>
-            </div>
-
-            <p className="text-[11px] text-[#57544a] leading-relaxed">
-              "In our first meeting about NieR:Automata’s UI, YOKO-san said he wanted to add something strange.
-              Use your self-destruct function to see this broken UI." — Hisayoshi Kijima Devblog
-            </p>
-
-            <NierButton
-              text="INITIATE SELF-DESTRUCT [L3 + R3]"
-              variant="alert"
-              onClick={triggerSelfDestruct}
-              className="w-full"
-            />
-          </div>
-        </div>
+          </NierCard>
+                  </div>
       </div>
     </div>
   );
