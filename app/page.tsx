@@ -20,6 +20,7 @@ function PortfolioContent() {
   );
   const [crtEnabled, setCrtEnabled] = useState<boolean>(true);
   const [isBooting, setIsBooting] = useState<boolean>(searchParams.get('noboot') !== 'true');
+  const [contentKey, setContentKey] = useState<number>(0);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   // Hydrate theme on mount & respond to device/browser theme
@@ -141,11 +142,16 @@ function PortfolioContent() {
     nierAudio.playHover();
   };
 
+  const handleBootComplete = () => {
+    setIsBooting(false);
+    setContentKey((prev) => prev + 1);
+  };
+
   return (
     <div className="relative min-h-screen flex flex-col justify-between">
       {/* Booting Sequence Overlay */}
       {isBooting && (
-        <NierBootScreen onComplete={() => setIsBooting(false)} />
+        <NierBootScreen onComplete={handleBootComplete} />
       )}
 
       {/* CRT Lens Vignette and Scanlines Overlay */}
@@ -169,7 +175,7 @@ function PortfolioContent() {
             onToggleTheme={toggleTheme}
           />
 
-          <main key={activeTab} className="w-full mt-4">
+          <main key={`${activeTab}-${contentKey}`} className="w-full mt-4">
             {activeTab === 'system' && <SystemView onNavigate={handleTabChange} />}
             {activeTab === 'arsenal' && <ArsenalView />}
             {activeTab === 'chips' && <ChipsView />}
