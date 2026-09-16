@@ -32,7 +32,7 @@ pre, code, kbd, samp,
   --nier-text: #3f3d36;
   --nier-text-heading: #4e4b42;
   --nier-text-muted: #57544a;
-  --nier-card-shadow: #b4af9a;
+  --nier-card-shadow: #c8c3b0;
 }
 
 .dark {
@@ -50,7 +50,7 @@ pre, code, kbd, samp,
   --nier-text: #dad4bb;
   --nier-text-heading: #eae5d2;
   --nier-text-muted: #a39e8a;
-  --nier-card-shadow: #0c0c0a;
+  --nier-card-shadow: #33312a;
 }
 
 ::selection {
@@ -369,14 +369,26 @@ html, body {
 }
 
 /* Box Shadows */
+.shadow-\[2px_2px_0px_\#b4af9a\],
+.shadow-\[3px_3px_0px_\#b4af9a\],
+.shadow-\[4px_4px_0px_\#b4af9a\] {
+  box-shadow: 2px 2px 0px var(--nier-card-shadow) !important;
+}
+.shadow-\[2px_2px_0px_\#4e4b42\],
+.shadow-\[3px_3px_0px_\#4e4b42\],
+.shadow-\[4px_4px_0px_\#4e4b42\] {
+  box-shadow: 2px 2px 0px #9e9987 !important;
+}
+
 .dark .shadow-\[2px_2px_0px_\#b4af9a\],
 .dark .shadow-\[3px_3px_0px_\#b4af9a\],
 .dark .shadow-\[4px_4px_0px_\#b4af9a\] {
   box-shadow: 2px 2px 0px var(--nier-card-shadow) !important;
 }
 .dark .shadow-\[2px_2px_0px_\#4e4b42\],
-.dark .shadow-\[3px_3px_0px_\#4e4b42\] {
-  box-shadow: 2px 2px 0px #0a0a09 !important;
+.dark .shadow-\[3px_3px_0px_\#4e4b42\],
+.dark .shadow-\[4px_4px_0px_\#4e4b42\] {
+  box-shadow: 2px 2px 0px var(--nier-card-shadow) !important;
 }
 
 /* Hover States in Dark Mode */
@@ -587,13 +599,13 @@ html, body {
   flex-direction: row;
   align-items: baseline;
   gap: 16px;
-  text-shadow: 7px 5px rgba(0, 0, 0, 0.22);
+  text-shadow: 4px 3px rgba(0, 0, 0, 0.08);
   margin-bottom: 0.5rem;
 }
 
 .dark .nier-page-title {
   color: #eae5d2;
-  text-shadow: 7px 5px rgba(255, 255, 255, 0.15);
+  text-shadow: 4px 3px rgba(255, 255, 255, 0.07);
 }
 
 .nier-page-title h1 {
@@ -616,14 +628,14 @@ html, body {
   font-size: 24px;
   font-weight: 400;
   letter-spacing: 0px;
-  text-shadow: 6px 4px rgba(0, 0, 0, 0.04);
+  text-shadow: 3px 2px rgba(0, 0, 0, 0.03);
   color: #7a7667;
   line-height: 1.1;
 }
 
 .dark .nier-page-title h3 {
   color: #a39e8a;
-  text-shadow: 6px 4px rgba(255, 255, 255, 0.08);
+  text-shadow: 3px 2px rgba(255, 255, 255, 0.05);
 }
 
 @media (max-width: 640px) {
@@ -634,32 +646,32 @@ html, body {
 
 /* Authentic NieR Text Shadows (Calibrated from Title.tsx) */
 .nier-title-shadow {
-  text-shadow: 2px 1.5px rgba(0, 0, 0, 0.18);
+  text-shadow: 1.5px 1px rgba(0, 0, 0, 0.08);
   letter-spacing: 1px;
 }
 
 .dark .nier-title-shadow {
-  text-shadow: 2px 1.5px rgba(255, 255, 255, 0.14);
+  text-shadow: 1.5px 1px rgba(255, 255, 255, 0.07);
 }
 
 .nier-text-shadow-sm {
-  text-shadow: 2px 1.5px rgba(0, 0, 0, 0.14);
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.06);
 }
 
 .dark .nier-text-shadow-sm {
-  text-shadow: 2px 1.5px rgba(255, 255, 255, 0.12);
+  text-shadow: 1px 1px rgba(255, 255, 255, 0.06);
 }
 
 .nier-heading {
   font-family: 'Manrope', sans-serif;
   letter-spacing: 4px;
-  text-shadow: 6px 4px rgba(0, 0, 0, 0.22);
+  text-shadow: 4px 3px rgba(0, 0, 0, 0.08);
   font-weight: 700;
   color: var(--nier-text-heading);
 }
 
 .dark .nier-heading {
-  text-shadow: 6px 4px rgba(255, 255, 255, 0.15);
+  text-shadow: 4px 3px rgba(255, 255, 255, 0.07);
 }
 
 .nier-subheading {
