@@ -27,25 +27,10 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
   theme,
   onToggleTheme,
 }) => {
-  const [timeStr, setTimeStr] = useState('');
   const [audioActive, setAudioActive] = useState(true);
 
   useEffect(() => {
     setAudioActive(nierAudio.enabled);
-    const updateClock = () => {
-      const d = new Date();
-      setTimeStr(
-        d.toLocaleTimeString('en-US', {
-          hour12: false,
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-        })
-      );
-    };
-    updateClock();
-    const interval = setInterval(updateClock, 1000);
-    return () => clearInterval(interval);
   }, []);
 
   const handleAudioToggle = () => {
@@ -59,12 +44,6 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
       <div className="flex flex-wrap items-center justify-between border-b border-[#b4af9a] pb-2 text-xs text-[#57544a] gap-2 font-mono">
         {/* Realtime Telemetry Controls */}
         <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-          {timeStr && (
-            <span className="bg-[#dad4bb] px-1.5 sm:px-2 py-0.5 border border-[#b4af9a] text-[10px] sm:text-[11px] font-bold text-[#3f3d36]">
-              {timeStr}
-            </span>
-          )}
-
           {/* Sound Toggle */}
           <button
             onClick={handleAudioToggle}
