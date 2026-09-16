@@ -13,25 +13,25 @@ export const COMM_CONFIG: CommConfig = {
 
 export const UPLINK_CHANNELS: UplinkChannel[] = [
   {
+    id: 'mail',
+    title: 'Email',
+    handle: 'ram15.panjwani@gmail.com',
+    url: 'mailto:ram15.panjwani@gmail.com',
+    iconName: 'Mail',
+  },
+  {
     id: 'github',
-    title: 'GIthub',
+    title: 'Github',
     handle: 'github.com/RamPanjwani',
     url: 'https://github.com/RamPanjwani',
     iconName: 'Github',
   },
   {
     id: 'linkedin',
-    title: 'Linkedin',
+    title: 'LinkedIn',
     handle: 'linkedin.com/in/rampanjwani',
     url: 'https://www.linkedin.com/in/rampanjwani/',
     iconName: 'Linkedin',
-  },
-  {
-    id: 'x',
-    title: 'X',
-    handle: 'x.com/rampanjwanii',
-    url: 'https://x.com/rampanjwanii',
-    iconName: 'X',
   },
   {
     id: 'resume',
@@ -41,10 +41,10 @@ export const UPLINK_CHANNELS: UplinkChannel[] = [
     iconName: 'Resume',
   },
   {
-    id: 'mail',
-    title: 'EMail',
-    handle: 'ram15.panjwani@gmail.com',
-    url: 'mailto:ram15.panjwani@gmail.com',
-    iconName: 'Mail',
+    id: 'x',
+    title: 'X',
+    handle: 'x.com/rampanjwanii',
+    url: 'https://x.com/rampanjwanii',
+    iconName: 'X',
   },
 ];
