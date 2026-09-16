@@ -796,3 +796,25 @@ html, body {
     display: none !important;
   }
 }
+
+/* Authentic NieR Boot Screen Responsive Background Logo */
+.nier-boot-screen-bg {
+  background-color: #181816;
+  background-image: url(/assets/yorha-opacity-logo.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: min(85vw, 440px) auto;
+  text-shadow: 0px 0px 5px white;
+}
+
+@media (min-width: 640px) {
+  .nier-boot-screen-bg {
+    background-size: min(80vw, 560px) auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nier-boot-screen-bg {
+    background-size: auto;
+  }
+}

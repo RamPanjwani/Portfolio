@@ -35,14 +35,7 @@ export default function LoadingPage() {
 
   return (
     <main
-      className="fixed inset-0 z-[100] text-white flex flex-col p-[2%] md:p-[4%] select-none overflow-hidden font-sans"
-      style={{
-        backgroundColor: "#181816",
-        backgroundImage: "url(/assets/yorha-opacity-logo.png)",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        textShadow: "0px 0px 5px white",
-      }}
+      className="fixed inset-0 z-[100] text-white flex flex-col p-3 sm:p-4 md:p-[4%] select-none overflow-hidden font-sans nier-boot-screen-bg"
     >
       {/* Top Header - exactly matching screenshot */}
       <header className="flex justify-between items-center pb-2">

@@ -41,16 +41,9 @@ export const NierBootScreen: React.FC<NierBootScreenProps> = ({ onStartingExit, 
 
   return (
     <main
-      className={`fixed inset-0 z-[100] text-white flex flex-col p-[2%] md:p-[4%] select-none overflow-hidden font-sans transition-opacity duration-200 ease-out ${
+      className={`fixed inset-0 z-[100] text-white flex flex-col p-3 sm:p-4 md:p-[4%] select-none overflow-hidden font-sans transition-opacity duration-200 ease-out nier-boot-screen-bg ${
         fadeOut ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
-      style={{
-        backgroundColor: "#181816",
-        backgroundImage: "url(/assets/yorha-opacity-logo.png)",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        textShadow: "0px 0px 5px white",
-      }}
     >
       {/* Top Header - exactly as in NieR design system screenshot */}
       <header className="flex justify-between items-center pb-2">
