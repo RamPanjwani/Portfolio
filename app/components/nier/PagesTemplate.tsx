@@ -27,7 +27,7 @@ export const PagesTemplate: React.FC<PagesTemplateProps> = ({
     <div className={`space-y-6 select-none ${className}`}>
       {/* Title Header with authentic NieR 48px / 8px tracking & 7px 5px shadow */}
       {(title || subtitle) && (
-        <div className="nier-slide-in stagger-1 pb-1">
+        <div className="nier-title-slide pb-1">
           <Title title={title} subtitle={subtitle} />
         </div>
       )}

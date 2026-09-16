@@ -20,7 +20,7 @@ export const NierSectionHeader: React.FC<NierSectionHeaderProps> = ({
 }) => {
   return (
     <div
-      className={`flex flex-col lg:flex-row items-start lg:items-baseline justify-between pb-1 gap-2.5 nier-slide-in stagger-1 ${className}`}
+      className={`flex flex-col lg:flex-row items-start lg:items-baseline justify-between pb-1 gap-2.5 nier-title-slide ${className}`}
     >
       <Title title={title} subtitle={subtitle} />
 
