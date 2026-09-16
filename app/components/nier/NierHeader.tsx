@@ -99,21 +99,16 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
       </div>
 
       {/* Mobile Navigation Header Bar (< sm) */}
-      <div className="flex sm:hidden items-stretch gap-2.5 w-full">
-        <div className="flex items-center">
-          <NierBar height="38px" dark={true} />
-        </div>
-
-        <button
-          onClick={() => {
-            setMenuOpen((prev) => !prev);
-            nierAudio.playSelect();
-          }}
-          className={`flex-1 flex items-center justify-between px-3.5 py-2 border text-xs font-mono font-bold transition-all shadow-[2px_2px_0px_#b4af9a] active:scale-[0.99] active:translate-y-[1px] ${
-            menuOpen
-              ? 'bg-[#4e4b42] text-[#dad4bb] border-[#4e4b42]'
-              : 'bg-[#dad4bb] text-[#3f3d36] border-[#4e4b42] hover:bg-[#eae5d2]'
-          }`}
+      <button
+        onClick={() => {
+          setMenuOpen((prev) => !prev);
+          nierAudio.playSelect();
+        }}
+        className={`sm:hidden w-full flex items-center justify-between px-3.5 py-2 border text-xs font-mono font-bold transition-all shadow-[2px_2px_0px_#b4af9a] active:scale-[0.99] active:translate-y-[1px] ${
+          menuOpen
+            ? 'bg-[#4e4b42] text-[#dad4bb] border-[#4e4b42]'
+            : 'bg-[#dad4bb] text-[#3f3d36] border-[#4e4b42] hover:bg-[#eae5d2]'
+        }`}
           aria-expanded={menuOpen}
           aria-label="Toggle Navigation Menu"
         >
@@ -129,7 +124,6 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
             {menuOpen ? <X className="w-4 h-4 shrink-0" /> : <Menu className="w-4 h-4 shrink-0" />}
           </div>
         </button>
-      </div>
 
       {/* Mobile Dropdown Menu */}
       {menuOpen && (
