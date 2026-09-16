@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { NierButton } from './NierButton';
-import { NierBar } from './NierBar';
 import { nierAudio } from './NierAudio';
 import { Volume2, VolumeX, Monitor, Sun, Moon, Menu, X } from 'lucide-react';
 
@@ -148,31 +147,23 @@ export const NierHeader: React.FC<NierHeaderProps> = ({
         </nav>
       )}
 
-      {/* Desktop Navigation Row with Musical Score Bar (>= sm) */}
-      <div className="hidden sm:flex items-stretch gap-3">
-        {/* Double Bar Musical Score Motif (Hisayoshi Kijima devblog) */}
-        <div className="flex items-center">
-          <NierBar height="38px" dark={true} />
-        </div>
-
-        {/* Navigation Tabs */}
-        <nav className="flex-1 grid sm:grid-cols-3 lg:grid-cols-6 gap-1.5 sm:gap-2">
-          {NAVIGATION_TABS.map((tab) => {
-            const isActive = activeTab === tab.id || (tab.id === 'photos' && activeTab === 'logs');
-            return (
-              <NierButton
-                key={tab.id}
-                active={isActive}
-                variant={isActive ? 'primary' : 'secondary'}
-                onClick={() => onTabChange(tab.id)}
-                className="text-[11px] sm:text-xs"
-              >
-                <span>{tab.label}</span>
-              </NierButton>
-            );
-          })}
-        </nav>
-      </div>
+      {/* Desktop Navigation Tabs (>= sm) */}
+      <nav className="hidden sm:grid sm:grid-cols-3 lg:grid-cols-6 gap-1.5 sm:gap-2">
+        {NAVIGATION_TABS.map((tab) => {
+          const isActive = activeTab === tab.id || (tab.id === 'photos' && activeTab === 'logs');
+          return (
+            <NierButton
+              key={tab.id}
+              active={isActive}
+              variant={isActive ? 'primary' : 'secondary'}
+              onClick={() => onTabChange(tab.id)}
+              className="text-[11px] sm:text-xs"
+            >
+              <span>{tab.label}</span>
+            </NierButton>
+          );
+        })}
+      </nav>
 
       {/* Analog Border Strip: Solid divider line + Dotted alternating dash line */}
       <div className="relative pt-1">
