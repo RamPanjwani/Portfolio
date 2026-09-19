@@ -70,7 +70,7 @@ export const NierModal: React.FC<NierModalProps> = ({
             </button>
           </div>
         ) : (
-          <div className="flex justify-end pb-2 sm:pb-3">
+          <div className="flex justify-end -mb-1">
             <button
               onClick={() => {
                 onClose();
