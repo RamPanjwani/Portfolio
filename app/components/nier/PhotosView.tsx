@@ -82,16 +82,8 @@ export const PhotosView: React.FC = () => {
               +
             </span>
 
-            {/* Top Telemetry Header */}
-            <div className="flex items-center justify-between text-[9px] pb-1.5 px-0.5 border-b nier-photo-header">
-              <span className="font-bold nier-photo-title">
-                {photo.id}
-              </span>
-              <span>{photo.date} · {photo.time}</span>
-            </div>
-
             {/* Image Container with Hover Scanlines & Glitch */}
-            <div className="relative overflow-hidden aspect-[4/3] my-2 border nier-photo-img-wrap">
+            <div className="relative overflow-hidden aspect-[4/3] mb-2 border nier-photo-img-wrap">
               <img
                 src={photo.src}
                 alt={photo.title}
@@ -110,7 +102,7 @@ export const PhotosView: React.FC = () => {
 
             {/* Bottom Meta Data */}
             <div className="pt-1.5 border-t nier-photo-footer text-[9px] flex items-center justify-between">
-              <span className="truncate">{photo.camera} · {photo.aperture}</span>
+              <span className="truncate">{photo.date} · {photo.time}</span>
               <span className="font-bold nier-photo-size">
                 {photo.fileSize}
               </span>
