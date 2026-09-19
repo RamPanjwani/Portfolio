@@ -426,12 +426,6 @@ html, body {
   background-color: #181816 !important;
 }
 
-/* Expanding razor line on hover in dark mode */
-.dark .group:hover > div:first-child,
-.dark .group:hover > div:last-child {
-  background-color: #dad4bb !important;
-}
-
 /* Scrollbars in Dark Mode */
 .dark ::-webkit-scrollbar-track {
   background: #181816 !important;
@@ -472,6 +466,7 @@ html, body {
   border-color: #57544a !important;
 }
 
+.nier-btn-surface:hover,
 .group:hover .nier-btn-surface {
   background-position: 100% 0%;
   color: #dad4bb !important;
@@ -496,6 +491,7 @@ html, body {
   border-color: #dad4bb !important;
 }
 
+.dark .nier-btn-surface:hover,
 .dark .group:hover .nier-btn-surface {
   background-position: 100% 0%;
   color: #181816 !important;
@@ -515,12 +511,14 @@ html, body {
 }
 
 .nier-btn-surface.active .nier-pip,
-.group:hover .nier-btn-surface.active .nier-pip {
+.group:hover .nier-btn-surface.active .nier-pip,
+.nier-btn-surface.active:hover .nier-pip {
   background-image: none !important;
   background-color: #dad4bb !important;
   transform: none;
 }
 
+.nier-btn-surface:hover .nier-pip,
 .group:hover .nier-pip {
   background-position: 100% 0%;
   transform: none;
@@ -534,57 +532,17 @@ html, body {
 }
 
 .dark .nier-btn-surface.active .nier-pip,
-.dark .group:hover .nier-btn-surface.active .nier-pip {
+.dark .group:hover .nier-btn-surface.active .nier-pip,
+.dark .nier-btn-surface.active:hover .nier-pip {
   background-image: none !important;
   background-color: #181816 !important;
   transform: none;
 }
 
+.dark .nier-btn-surface:hover .nier-pip,
 .dark .group:hover .nier-pip {
   background-position: 100% 0%;
   transform: none;
-}
-
-/* Expanding Razor Border Lines (±8px physics from original repo) */
-.nier-razor-top {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: #57544a;
-  transform: translateY(0);
-  opacity: 0;
-  pointer-events: none;
-  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease;
-}
-
-.group:hover .nier-razor-top {
-  transform: translateY(-8px);
-  opacity: 1;
-}
-
-.nier-razor-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: #57544a;
-  transform: translateY(0);
-  opacity: 0;
-  pointer-events: none;
-  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease;
-}
-
-.group:hover .nier-razor-bottom {
-  transform: translateY(8px);
-  opacity: 1;
-}
-
-.dark .nier-razor-top,
-.dark .nier-razor-bottom {
-  background-color: #dad4bb;
 }
 
 /* =========================================================================
