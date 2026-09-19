@@ -72,7 +72,7 @@ export const PhotosView: React.FC = () => {
           <div
             key={photo.id}
             onClick={() => openLightbox(index)}
-            className="group relative border p-2.5 sm:p-3 nier-photo-card cursor-pointer flex flex-col justify-between active:scale-[0.99]"
+            className="group relative border p-2 sm:p-2.5 nier-photo-card cursor-pointer active:scale-[0.99]"
           >
             {/* Corner Decorative YoRHa Accents */}
             <span className="absolute top-1 left-1 text-[8px] nier-photo-accent">
@@ -81,9 +81,15 @@ export const PhotosView: React.FC = () => {
             <span className="absolute top-1 right-1 text-[8px] nier-photo-accent">
               +
             </span>
+            <span className="absolute bottom-1 left-1 text-[8px] nier-photo-accent">
+              +
+            </span>
+            <span className="absolute bottom-1 right-1 text-[8px] nier-photo-accent">
+              +
+            </span>
 
             {/* Image Container with Hover Scanlines & Glitch */}
-            <div className="relative overflow-hidden aspect-[4/3] mb-2 border nier-photo-img-wrap">
+            <div className="relative overflow-hidden aspect-[4/3] border nier-photo-img-wrap">
               <img
                 src={photo.src}
                 alt={photo.title}
@@ -98,14 +104,6 @@ export const PhotosView: React.FC = () => {
                   <span>INSPECT</span>
                 </span>
               </div>
-            </div>
-
-            {/* Bottom Meta Data */}
-            <div className="pt-1.5 border-t nier-photo-footer text-[9px] flex items-center justify-between">
-              <span className="truncate">{photo.date} · {photo.time}</span>
-              <span className="font-bold nier-photo-size">
-                {photo.fileSize}
-              </span>
             </div>
           </div>
         ))}
