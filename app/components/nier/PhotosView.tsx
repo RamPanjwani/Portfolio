@@ -140,7 +140,6 @@ export const PhotosView: React.FC = () => {
           isOpen={true}
           onClose={closeLightbox}
           maxWidth="max-w-5xl"
-          title={`[${selectedPhotoIndex! + 1}/${photos.length}]`}
         >
           <div className="space-y-4 font-mono text-xs">
             {/* Main Lightbox Display */}
@@ -219,7 +218,7 @@ export const PhotosView: React.FC = () => {
             {/* Modal Bottom Actions */}
             <div className="flex items-center justify-between pt-2 border-t border-[#b4af9a]/60 dark:border-[#444138]/60 text-[11px]">
               <span className="text-[#57544a] dark:text-[#a39e8a]">
-                NAVIGATE: [← / →] · ESCAPE: [CLOSE]
+                NAVIGATE: [← / →] · [{selectedPhotoIndex! + 1} / {photos.length}] · ESCAPE: [CLOSE]
               </span>
 
               <a
