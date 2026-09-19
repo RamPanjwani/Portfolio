@@ -2,44 +2,26 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { NierSectionHeader } from './NierSectionHeader';
-import { INITIAL_PHOTOS, PhotoItem, PhotoPeriod } from '../../data/photos';
+import { INITIAL_PHOTOS, PhotoItem } from '../../data/photos';
 import { NierModal } from './NierModal';
 import { nierAudio } from './NierAudio';
 import {
-  Camera,
   ChevronLeft,
   ChevronRight,
   Maximize2,
   ExternalLink,
-  ArrowUpDown,
-  Filter,
-  Sparkles,
 } from 'lucide-react';
 
 export const PhotosView: React.FC = () => {
   const [photos] = useState<PhotoItem[]>(INITIAL_PHOTOS);
-  const [selectedPeriod, setSelectedPeriod] = useState<PhotoPeriod>('ALL');
-  const [sortAsc, setSortAsc] = useState<boolean>(true);
   const [visibleCount, setVisibleCount] = useState<number>(12);
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
 
-  // Filter photos by period (Morning / Afternoon / All)
-  const filteredPhotos = useMemo(() => {
-    let result = photos;
-    if (selectedPeriod !== 'ALL') {
-      result = result.filter((p) => p.period === selectedPeriod);
-    }
-    return [...result].sort((a, b) => {
-      const cmp = a.filename.localeCompare(b.filename);
-      return sortAsc ? cmp : -cmp;
-    });
-  }, [photos, selectedPeriod, sortAsc]);
-
-  const currentlyVisible = filteredPhotos.slice(0, visibleCount);
-  const hasMore = visibleCount < filteredPhotos.length;
+  const currentlyVisible = useMemo(() => photos.slice(0, visibleCount), [photos, visibleCount]);
+  const hasMore = visibleCount < photos.length;
 
   // Selected photo for Lightbox modal
-  const activePhoto = selectedPhotoIndex !== null ? filteredPhotos[selectedPhotoIndex] : null;
+  const activePhoto = selectedPhotoIndex !== null ? photos[selectedPhotoIndex] : null;
 
   const openLightbox = (index: number) => {
     nierAudio.playSelect();
@@ -54,13 +36,13 @@ export const PhotosView: React.FC = () => {
   const handlePrevPhoto = () => {
     if (selectedPhotoIndex === null) return;
     nierAudio.playHover();
-    setSelectedPhotoIndex((prev) => (prev! > 0 ? prev! - 1 : filteredPhotos.length - 1));
+    setSelectedPhotoIndex((prev) => (prev! > 0 ? prev! - 1 : photos.length - 1));
   };
 
   const handleNextPhoto = () => {
     if (selectedPhotoIndex === null) return;
     nierAudio.playHover();
-    setSelectedPhotoIndex((prev) => (prev! < filteredPhotos.length - 1 ? prev! + 1 : 0));
+    setSelectedPhotoIndex((prev) => (prev! < photos.length - 1 ? prev! + 1 : 0));
   };
 
   // Keyboard navigation for lightbox
@@ -77,106 +59,12 @@ export const PhotosView: React.FC = () => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedPhotoIndex, filteredPhotos.length]);
-
-  const morningCount = photos.filter((p) => p.period === 'MORNING').length;
-  const afternoonCount = photos.filter((p) => p.period === 'AFTERNOON').length;
+  }, [selectedPhotoIndex, photos.length]);
 
   return (
     <div className="space-y-6 select-none font-mono">
       {/* Title Header */}
       <NierSectionHeader title="PHOTOS" />
-
-      {/* YoRHa Optical Archives Telemetry Controls Bar */}
-      <div className="border border-[#b4af9a] dark:border-[#444138] bg-[#dad4bb]/90 dark:bg-[#23221e]/90 p-3 sm:p-4 shadow-[3px_3px_0px_#c8c3b0] dark:shadow-[2px_2px_0px_#33312a] space-y-3">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs border-b border-[#b4af9a]/60 dark:border-[#444138]/60 pb-3">
-          {/* Telemetry Status */}
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#89a87d] animate-pulse" />
-            <span className="font-bold tracking-wider text-[#4e4b42] dark:text-[#dad4bb]">
-              OPTICAL ARCHIVES // VISUAL RECONNAISSANCE
-            </span>
-            <span className="text-[10px] text-[#57544a] dark:text-[#a39e8a] hidden sm:inline">
-              [{photos.length} TOTAL RECORDS LOADED]
-            </span>
-          </div>
-
-          {/* Sort Order Toggle */}
-          <button
-            onClick={() => {
-              nierAudio.playHover();
-              setSortAsc((prev) => !prev);
-            }}
-            className="flex items-center gap-1.5 px-2.5 py-1 border border-[#b4af9a] dark:border-[#444138] text-[11px] font-bold text-[#4e4b42] dark:text-[#dad4bb] hover:bg-[#4e4b42] hover:text-[#dad4bb] dark:hover:bg-[#dad4bb] dark:hover:text-[#23221e] transition-colors cursor-pointer"
-            title="Toggle Chronological Sort Order"
-          >
-            <ArrowUpDown className="w-3 h-3 text-[#cd664d]" />
-            <span>ORDER: {sortAsc ? 'CHRONO (ASC)' : 'CHRONO (DESC)'}</span>
-          </button>
-        </div>
-
-        {/* Filter Navigation Tabs */}
-        <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
-          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-            <span className="text-[11px] text-[#57544a] dark:text-[#a39e8a] flex items-center gap-1 mr-1">
-              <Filter className="w-3 h-3" />
-              <span>FILTER:</span>
-            </span>
-
-            {/* ALL */}
-            <button
-              onClick={() => {
-                nierAudio.playSelect();
-                setSelectedPeriod('ALL');
-                setVisibleCount(12);
-              }}
-              className={`px-2.5 py-1 text-[11px] font-bold border transition-colors cursor-pointer ${
-                selectedPeriod === 'ALL'
-                  ? 'bg-[#4e4b42] text-[#dad4bb] border-[#4e4b42]'
-                  : 'bg-[#dad4bb] dark:bg-[#23221e] text-[#57544a] dark:text-[#a39e8a] border-[#b4af9a] dark:border-[#444138] hover:bg-[#4e4b42] hover:text-[#dad4bb]'
-              }`}
-            >
-              ALL [{photos.length}]
-            </button>
-
-            {/* MORNING */}
-            <button
-              onClick={() => {
-                nierAudio.playSelect();
-                setSelectedPeriod('MORNING');
-                setVisibleCount(12);
-              }}
-              className={`px-2.5 py-1 text-[11px] font-bold border transition-colors cursor-pointer ${
-                selectedPeriod === 'MORNING'
-                  ? 'bg-[#4e4b42] text-[#dad4bb] border-[#4e4b42]'
-                  : 'bg-[#dad4bb] dark:bg-[#23221e] text-[#57544a] dark:text-[#a39e8a] border-[#b4af9a] dark:border-[#444138] hover:bg-[#4e4b42] hover:text-[#dad4bb]'
-              }`}
-            >
-              MORNING PATROL [{morningCount}]
-            </button>
-
-            {/* AFTERNOON */}
-            <button
-              onClick={() => {
-                nierAudio.playSelect();
-                setSelectedPeriod('AFTERNOON');
-                setVisibleCount(12);
-              }}
-              className={`px-2.5 py-1 text-[11px] font-bold border transition-colors cursor-pointer ${
-                selectedPeriod === 'AFTERNOON'
-                  ? 'bg-[#4e4b42] text-[#dad4bb] border-[#4e4b42]'
-                  : 'bg-[#dad4bb] dark:bg-[#23221e] text-[#57544a] dark:text-[#a39e8a] border-[#b4af9a] dark:border-[#444138] hover:bg-[#4e4b42] hover:text-[#dad4bb]'
-              }`}
-            >
-              AFTERNOON RECON [{afternoonCount}]
-            </button>
-          </div>
-
-          <div className="text-[10px] text-[#57544a] dark:text-[#a39e8a]">
-            SHOWING {currentlyVisible.length} OF {filteredPhotos.length}
-          </div>
-        </div>
-      </div>
 
       {/* Photo Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
@@ -239,7 +127,7 @@ export const PhotosView: React.FC = () => {
             }}
             className="px-6 py-2.5 bg-[#dad4bb] dark:bg-[#23221e] text-[#4e4b42] dark:text-[#dad4bb] border border-[#4e4b42] dark:border-[#dad4bb] font-bold text-xs tracking-wider shadow-[3px_3px_0px_#b4af9a] dark:shadow-[2px_2px_0px_#444138] hover:bg-[#4e4b42] hover:text-[#dad4bb] dark:hover:bg-[#dad4bb] dark:hover:text-[#23221e] transition-all active:scale-[0.98] cursor-pointer"
           >
-            LOAD MORE RECORDS [{filteredPhotos.length - visibleCount} REMAINING]
+            LOAD MORE RECORDS [{photos.length - visibleCount} REMAINING]
           </button>
         </div>
       )}
@@ -250,7 +138,7 @@ export const PhotosView: React.FC = () => {
           isOpen={true}
           onClose={closeLightbox}
           maxWidth="max-w-5xl"
-          title={`OPTICAL RECORD // ${activePhoto.id} [${selectedPhotoIndex! + 1}/${filteredPhotos.length}]`}
+          title={`OPTICAL RECORD // ${activePhoto.id} [${selectedPhotoIndex! + 1}/${photos.length}]`}
         >
           <div className="space-y-4 font-mono text-xs">
             {/* Main Lightbox Display */}
