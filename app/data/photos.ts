@@ -18,20 +18,6 @@ export interface PhotoItem {
 export const INITIAL_PHOTOS: PhotoItem[] = [
   {
     "id": "OPT-001",
-    "title": "OPTICAL RECON // SGCAM_20260917_134508429",
-    "filename": "SGCAM_20260917_134508429.jpg",
-    "src": "/photos/SGCAM_20260917_134508429.jpg",
-    "date": "2026.09.17",
-    "time": "13:45:08",
-    "period": "AFTERNOON",
-    "resolution": "6120x4608",
-    "camera": "XIAOMI",
-    "software": "HDR+ 1.0.450594208ndy",
-    "aperture": "f/1.7",
-    "fileSize": "4.87 MB"
-  },
-  {
-    "id": "OPT-002",
     "title": "OPTICAL RECON // SGCAM_20260917_134458712",
     "filename": "SGCAM_20260917_134458712.jpg",
     "src": "/photos/SGCAM_20260917_134458712.jpg",
@@ -45,7 +31,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "4.52 MB"
   },
   {
-    "id": "OPT-003",
+    "id": "OPT-002",
     "title": "OPTICAL RECON // SGCAM_20260917_133735558",
     "filename": "SGCAM_20260917_133735558.jpg",
     "src": "/photos/SGCAM_20260917_133735558.jpg",
@@ -59,7 +45,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "6.08 MB"
   },
   {
-    "id": "OPT-004",
+    "id": "OPT-003",
     "title": "OPTICAL RECON // SGCAM_20260917_133733725",
     "filename": "SGCAM_20260917_133733725.jpg",
     "src": "/photos/SGCAM_20260917_133733725.jpg",
@@ -73,7 +59,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "5.98 MB"
   },
   {
-    "id": "OPT-005",
+    "id": "OPT-004",
     "title": "OPTICAL RECON // SGCAM_20260917_133210706",
     "filename": "SGCAM_20260917_133210706.jpg",
     "src": "/photos/SGCAM_20260917_133210706.jpg",
@@ -87,7 +73,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "5.21 MB"
   },
   {
-    "id": "OPT-006",
+    "id": "OPT-005",
     "title": "OPTICAL RECON // SGCAM_20260917_133207267",
     "filename": "SGCAM_20260917_133207267.jpg",
     "src": "/photos/SGCAM_20260917_133207267.jpg",
@@ -101,7 +87,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "5.62 MB"
   },
   {
-    "id": "OPT-007",
+    "id": "OPT-006",
     "title": "OPTICAL RECON // SGCAM_20260917_133159656",
     "filename": "SGCAM_20260917_133159656.jpg",
     "src": "/photos/SGCAM_20260917_133159656.jpg",
@@ -115,7 +101,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "5.90 MB"
   },
   {
-    "id": "OPT-008",
+    "id": "OPT-007",
     "title": "OPTICAL RECON // SGCAM_20260917_132248394",
     "filename": "SGCAM_20260917_132248394.jpg",
     "src": "/photos/SGCAM_20260917_132248394.jpg",
@@ -129,7 +115,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "6.27 MB"
   },
   {
-    "id": "OPT-009",
+    "id": "OPT-008",
     "title": "OPTICAL RECON // SGCAM_20260917_132008143",
     "filename": "SGCAM_20260917_132008143.jpg",
     "src": "/photos/SGCAM_20260917_132008143.jpg",
@@ -143,7 +129,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "5.77 MB"
   },
   {
-    "id": "OPT-010",
+    "id": "OPT-009",
     "title": "OPTICAL RECON // SGCAM_20260917_132002894",
     "filename": "SGCAM_20260917_132002894.jpg",
     "src": "/photos/SGCAM_20260917_132002894.jpg",
@@ -157,7 +143,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "5.45 MB"
   },
   {
-    "id": "OPT-011",
+    "id": "OPT-010",
     "title": "OPTICAL RECON // SGCAM_20260917_131959024",
     "filename": "SGCAM_20260917_131959024.jpg",
     "src": "/photos/SGCAM_20260917_131959024.jpg",
@@ -171,7 +157,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "5.56 MB"
   },
   {
-    "id": "OPT-012",
+    "id": "OPT-011",
     "title": "OPTICAL RECON // SGCAM_20260917_131923083",
     "filename": "SGCAM_20260917_131923083.jpg",
     "src": "/photos/SGCAM_20260917_131923083.jpg",
@@ -185,7 +171,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "6.06 MB"
   },
   {
-    "id": "OPT-013",
+    "id": "OPT-012",
     "title": "OPTICAL RECON // SGCAM_20260917_131107916",
     "filename": "SGCAM_20260917_131107916.jpg",
     "src": "/photos/SGCAM_20260917_131107916.jpg",
@@ -199,7 +185,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "4.76 MB"
   },
   {
-    "id": "OPT-014",
+    "id": "OPT-013",
     "title": "OPTICAL RECON // SGCAM_20260917_131103861",
     "filename": "SGCAM_20260917_131103861.jpg",
     "src": "/photos/SGCAM_20260917_131103861.jpg",
@@ -213,7 +199,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "5.26 MB"
   },
   {
-    "id": "OPT-015",
+    "id": "OPT-014",
     "title": "OPTICAL RECON // SGCAM_20260917_131055542",
     "filename": "SGCAM_20260917_131055542.jpg",
     "src": "/photos/SGCAM_20260917_131055542.jpg",
@@ -227,7 +213,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "5.70 MB"
   },
   {
-    "id": "OPT-016",
+    "id": "OPT-015",
     "title": "OPTICAL RECON // SGCAM_20260917_131050532",
     "filename": "SGCAM_20260917_131050532.jpg",
     "src": "/photos/SGCAM_20260917_131050532.jpg",
@@ -241,7 +227,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "5.26 MB"
   },
   {
-    "id": "OPT-017",
+    "id": "OPT-016",
     "title": "OPTICAL RECON // SGCAM_20260917_131048180",
     "filename": "SGCAM_20260917_131048180.jpg",
     "src": "/photos/SGCAM_20260917_131048180.jpg",
@@ -255,7 +241,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "5.18 MB"
   },
   {
-    "id": "OPT-018",
+    "id": "OPT-017",
     "title": "OPTICAL RECON // IMG_20260917_102631",
     "filename": "IMG_20260917_102631.jpg",
     "src": "/photos/IMG_20260917_102631.jpg",
@@ -269,7 +255,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "3.51 MB"
   },
   {
-    "id": "OPT-019",
+    "id": "OPT-018",
     "title": "OPTICAL RECON // IMG_20260917_102624",
     "filename": "IMG_20260917_102624.jpg",
     "src": "/photos/IMG_20260917_102624.jpg",
@@ -283,7 +269,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "3.36 MB"
   },
   {
-    "id": "OPT-020",
+    "id": "OPT-019",
     "title": "OPTICAL RECON // IMG_20260917_084656",
     "filename": "IMG_20260917_084656.jpg",
     "src": "/photos/IMG_20260917_084656.jpg",
@@ -297,7 +283,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "5.10 MB"
   },
   {
-    "id": "OPT-021",
+    "id": "OPT-020",
     "title": "OPTICAL RECON // IMG_20260917_084653",
     "filename": "IMG_20260917_084653.jpg",
     "src": "/photos/IMG_20260917_084653.jpg",
@@ -311,7 +297,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "4.88 MB"
   },
   {
-    "id": "OPT-022",
+    "id": "OPT-021",
     "title": "OPTICAL RECON // IMG_20260917_083644",
     "filename": "IMG_20260917_083644.jpg",
     "src": "/photos/IMG_20260917_083644.jpg",
@@ -325,7 +311,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "4.75 MB"
   },
   {
-    "id": "OPT-023",
+    "id": "OPT-022",
     "title": "OPTICAL RECON // IMG_20260917_083641",
     "filename": "IMG_20260917_083641.jpg",
     "src": "/photos/IMG_20260917_083641.jpg",
@@ -339,7 +325,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "5.19 MB"
   },
   {
-    "id": "OPT-024",
+    "id": "OPT-023",
     "title": "OPTICAL RECON // IMG_20260917_083636",
     "filename": "IMG_20260917_083636.jpg",
     "src": "/photos/IMG_20260917_083636.jpg",
@@ -353,7 +339,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "3.51 MB"
   },
   {
-    "id": "OPT-025",
+    "id": "OPT-024",
     "title": "OPTICAL RECON // IMG_20260917_083633",
     "filename": "IMG_20260917_083633.jpg",
     "src": "/photos/IMG_20260917_083633.jpg",
@@ -367,7 +353,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "3.89 MB"
   },
   {
-    "id": "OPT-026",
+    "id": "OPT-025",
     "title": "OPTICAL RECON // SGCAM_20260917_082310503",
     "filename": "SGCAM_20260917_082310503.jpg",
     "src": "/photos/SGCAM_20260917_082310503.jpg",
@@ -381,7 +367,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "7.98 MB"
   },
   {
-    "id": "OPT-027",
+    "id": "OPT-026",
     "title": "OPTICAL RECON // SGCAM_20260917_082305013",
     "filename": "SGCAM_20260917_082305013.jpg",
     "src": "/photos/SGCAM_20260917_082305013.jpg",
@@ -395,7 +381,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "7.92 MB"
   },
   {
-    "id": "OPT-028",
+    "id": "OPT-027",
     "title": "OPTICAL RECON // SGCAM_20260917_082111481",
     "filename": "SGCAM_20260917_082111481.jpg",
     "src": "/photos/SGCAM_20260917_082111481.jpg",
@@ -409,7 +395,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "8.10 MB"
   },
   {
-    "id": "OPT-029",
+    "id": "OPT-028",
     "title": "OPTICAL RECON // SGCAM_20260917_082108150",
     "filename": "SGCAM_20260917_082108150.jpg",
     "src": "/photos/SGCAM_20260917_082108150.jpg",
@@ -423,7 +409,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "8.21 MB"
   },
   {
-    "id": "OPT-030",
+    "id": "OPT-029",
     "title": "OPTICAL RECON // SGCAM_20260917_081912326",
     "filename": "SGCAM_20260917_081912326.jpg",
     "src": "/photos/SGCAM_20260917_081912326.jpg",
@@ -437,7 +423,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "4.19 MB"
   },
   {
-    "id": "OPT-031",
+    "id": "OPT-030",
     "title": "OPTICAL RECON // SGCAM_20260917_081844309",
     "filename": "SGCAM_20260917_081844309.jpg",
     "src": "/photos/SGCAM_20260917_081844309.jpg",
@@ -451,7 +437,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "8.20 MB"
   },
   {
-    "id": "OPT-032",
+    "id": "OPT-031",
     "title": "OPTICAL RECON // SGCAM_20260917_075632444",
     "filename": "SGCAM_20260917_075632444.jpg",
     "src": "/photos/SGCAM_20260917_075632444.jpg",
@@ -465,7 +451,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "5.41 MB"
   },
   {
-    "id": "OPT-033",
+    "id": "OPT-032",
     "title": "OPTICAL RECON // SGCAM_20260917_075625820",
     "filename": "SGCAM_20260917_075625820.jpg",
     "src": "/photos/SGCAM_20260917_075625820.jpg",
@@ -479,7 +465,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "5.37 MB"
   },
   {
-    "id": "OPT-034",
+    "id": "OPT-033",
     "title": "OPTICAL RECON // SGCAM_20260917_075029170",
     "filename": "SGCAM_20260917_075029170.jpg",
     "src": "/photos/SGCAM_20260917_075029170.jpg",
@@ -493,7 +479,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "4.11 MB"
   },
   {
-    "id": "OPT-035",
+    "id": "OPT-034",
     "title": "OPTICAL RECON // SGCAM_20260917_075023850",
     "filename": "SGCAM_20260917_075023850.jpg",
     "src": "/photos/SGCAM_20260917_075023850.jpg",
@@ -507,7 +493,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "3.70 MB"
   },
   {
-    "id": "OPT-036",
+    "id": "OPT-035",
     "title": "OPTICAL RECON // SGCAM_20260917_074714625",
     "filename": "SGCAM_20260917_074714625.jpg",
     "src": "/photos/SGCAM_20260917_074714625.jpg",
@@ -521,7 +507,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "5.09 MB"
   },
   {
-    "id": "OPT-037",
+    "id": "OPT-036",
     "title": "OPTICAL RECON // SGCAM_20260917_074518780",
     "filename": "SGCAM_20260917_074518780.jpg",
     "src": "/photos/SGCAM_20260917_074518780.jpg",
@@ -535,7 +521,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "4.48 MB"
   },
   {
-    "id": "OPT-038",
+    "id": "OPT-037",
     "title": "OPTICAL RECON // SGCAM_20260917_074514513",
     "filename": "SGCAM_20260917_074514513.jpg",
     "src": "/photos/SGCAM_20260917_074514513.jpg",
@@ -549,7 +535,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "5.52 MB"
   },
   {
-    "id": "OPT-039",
+    "id": "OPT-038",
     "title": "OPTICAL RECON // SGCAM_20260917_074509845",
     "filename": "SGCAM_20260917_074509845.jpg",
     "src": "/photos/SGCAM_20260917_074509845.jpg",
@@ -563,7 +549,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "4.46 MB"
   },
   {
-    "id": "OPT-040",
+    "id": "OPT-039",
     "title": "OPTICAL RECON // SGCAM_20260917_073848808",
     "filename": "SGCAM_20260917_073848808.jpg",
     "src": "/photos/SGCAM_20260917_073848808.jpg",
@@ -577,7 +563,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "6.10 MB"
   },
   {
-    "id": "OPT-041",
+    "id": "OPT-040",
     "title": "OPTICAL RECON // SGCAM_20260917_072231412",
     "filename": "SGCAM_20260917_072231412.jpg",
     "src": "/photos/SGCAM_20260917_072231412.jpg",
@@ -591,7 +577,7 @@ export const INITIAL_PHOTOS: PhotoItem[] = [
     "fileSize": "5.11 MB"
   },
   {
-    "id": "OPT-042",
+    "id": "OPT-041",
     "title": "OPTICAL RECON // SGCAM_20260917_071234237",
     "filename": "SGCAM_20260917_071234237.jpg",
     "src": "/photos/SGCAM_20260917_071234237.jpg",

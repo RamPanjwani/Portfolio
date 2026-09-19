@@ -140,7 +140,7 @@ export const PhotosView: React.FC = () => {
           isOpen={true}
           onClose={closeLightbox}
           maxWidth="max-w-5xl"
-          title={`OPTICAL RECORD // ${activePhoto.id} [${selectedPhotoIndex! + 1}/${photos.length}]`}
+          title={`${activePhoto.id} [${selectedPhotoIndex! + 1}/${photos.length}]`}
         >
           <div className="space-y-4 font-mono text-xs">
             {/* Main Lightbox Display */}
