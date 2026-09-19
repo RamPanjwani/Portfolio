@@ -42,7 +42,7 @@ export const NierModal: React.FC<NierModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#dad4bb]/85 backdrop-blur-md animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#dad4bb]/85 dark:bg-[#141311]/85 backdrop-blur-md animate-in fade-in duration-150 nier-modal-backdrop"
       onClick={onClose}
     >
       <div

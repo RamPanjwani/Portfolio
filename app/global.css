@@ -1044,7 +1044,15 @@ html, body {
   color: #3f3d36;
 }
 
+.nier-modal-backdrop {
+  background-color: rgba(218, 212, 187, 0.85);
+}
+
 /* DARK MODE OVERRIDES (Strictly driven by .dark class) */
+.dark .nier-modal-backdrop {
+  background-color: rgba(20, 19, 17, 0.85) !important;
+}
+
 .dark .nier-photo-exif-strip {
   background-color: #1c1b18;
   border-color: #444138;
@@ -1108,6 +1116,8 @@ html, body {
   background-color: #1a1917;
   border-color: #444138;
   color: #dad4bb;
+  box-shadow: 6px 6px 0px #0a0a09 !important;
 }
+
 
 
