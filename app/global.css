@@ -985,4 +985,139 @@ html, body {
   color: #23221e;
 }
 
+/* NieR Photo Inspect Modal Telemetry - White components & dark text in light mode */
+.nier-photo-exif-strip {
+  background-color: #ffffff;
+  border-color: #b4af9a;
+  box-shadow: 2px 2px 0px rgba(180, 175, 154, 0.4);
+}
+
+.nier-photo-exif-label {
+  color: #57544a;
+}
+
+.nier-photo-exif-value {
+  color: #23221e;
+}
+
+.nier-photo-exif-accent {
+  color: #2e6320;
+}
+
+.nier-photo-raw-btn {
+  background-color: #ffffff;
+  color: #23221e;
+  border-color: #4e4b42;
+  box-shadow: 2px 2px 0px #b4af9a;
+  transition: all 0.2s ease;
+}
+
+.nier-photo-raw-btn:hover {
+  background-color: #4e4b42;
+  color: #dad4bb;
+  border-color: #4e4b42;
+}
+
+.nier-photo-nav-btn {
+  background-color: #ffffff;
+  color: #23221e;
+  border-color: #b4af9a;
+  transition: all 0.2s ease;
+}
+
+.nier-photo-nav-btn:hover {
+  background-color: #4e4b42;
+  color: #dad4bb;
+  border-color: #4e4b42;
+}
+
+.nier-photo-nav-text {
+  color: #57544a;
+}
+
+.nier-modal-close-btn {
+  background-color: #ffffff;
+  color: #23221e;
+  border-color: #b4af9a;
+  transition: all 0.2s ease;
+}
+
+.nier-modal-close-btn:hover {
+  background-color: #4e4b42;
+  color: #dad4bb;
+  border-color: #4e4b42;
+}
+
+.nier-modal-dialog {
+  background-color: #dad4bb;
+  border-color: #b4af9a;
+  color: #3f3d36;
+}
+
+/* DARK MODE OVERRIDES (Strictly driven by .dark class) */
+.dark .nier-photo-exif-strip {
+  background-color: #1c1b18;
+  border-color: #444138;
+  box-shadow: none;
+}
+
+.dark .nier-photo-exif-label {
+  color: #a39e8a;
+}
+
+.dark .nier-photo-exif-value {
+  color: #dad4bb;
+}
+
+.dark .nier-photo-exif-accent {
+  color: #89a87d;
+}
+
+.dark .nier-photo-raw-btn {
+  background-color: #23221e;
+  color: #dad4bb;
+  border-color: #dad4bb;
+  box-shadow: 2px 2px 0px #444138;
+}
+
+.dark .nier-photo-raw-btn:hover {
+  background-color: #dad4bb;
+  color: #23221e;
+  border-color: #dad4bb;
+}
+
+.dark .nier-photo-nav-btn {
+  background-color: #23221e;
+  color: #dad4bb;
+  border-color: #444138;
+}
+
+.dark .nier-photo-nav-btn:hover {
+  background-color: #dad4bb;
+  color: #23221e;
+  border-color: #dad4bb;
+}
+
+.dark .nier-photo-nav-text {
+  color: #a39e8a;
+}
+
+.dark .nier-modal-close-btn {
+  background-color: #23221e;
+  color: #dad4bb;
+  border-color: #444138;
+}
+
+.dark .nier-modal-close-btn:hover {
+  background-color: #dad4bb;
+  color: #23221e;
+  border-color: #dad4bb;
+}
+
+.dark .nier-modal-dialog {
+  background-color: #1a1917;
+  border-color: #444138;
+  color: #dad4bb;
+}
+
 

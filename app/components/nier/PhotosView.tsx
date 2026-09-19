@@ -146,7 +146,7 @@ export const PhotosView: React.FC = () => {
                   e.stopPropagation();
                   handlePrevPhoto();
                 }}
-                className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-[#dad4bb]/90 dark:bg-[#23221e]/90 text-[#4e4b42] dark:text-[#dad4bb] border border-[#b4af9a] dark:border-[#444138] hover:bg-[#4e4b42] hover:text-[#dad4bb] dark:hover:bg-[#dad4bb] dark:hover:text-[#23221e] transition-colors cursor-pointer"
+                className="absolute left-2 top-1/2 -translate-y-1/2 p-2 border nier-photo-nav-btn cursor-pointer"
                 title="Previous Photograph (←)"
                 aria-label="Previous Photograph"
               >
@@ -158,7 +158,7 @@ export const PhotosView: React.FC = () => {
                   e.stopPropagation();
                   handleNextPhoto();
                 }}
-                className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-[#dad4bb]/90 dark:bg-[#23221e]/90 text-[#4e4b42] dark:text-[#dad4bb] border border-[#b4af9a] dark:border-[#444138] hover:bg-[#4e4b42] hover:text-[#dad4bb] dark:hover:bg-[#dad4bb] dark:hover:text-[#23221e] transition-colors cursor-pointer"
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-2 border nier-photo-nav-btn cursor-pointer"
                 title="Next Photograph (→)"
                 aria-label="Next Photograph"
               >
@@ -167,39 +167,39 @@ export const PhotosView: React.FC = () => {
             </div>
 
             {/* Technical EXIF Telemetry Strip */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 p-3 bg-[#eae5d2] dark:bg-[#1c1b18] border border-[#b4af9a]/80 dark:border-[#444138]/80 text-[11px]">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 p-3 border text-[11px] nier-photo-exif-strip">
               <div>
-                <span className="block text-[9px] text-[#57544a] dark:text-[#a39e8a] font-bold">
+                <span className="block text-[9px] font-bold nier-photo-exif-label">
                   TIMESTAMP
                 </span>
-                <span className="font-semibold text-[#4e4b42] dark:text-[#dad4bb]">
+                <span className="font-semibold nier-photo-exif-value">
                   {activePhoto.date} · {activePhoto.time}
                 </span>
               </div>
 
               <div>
-                <span className="block text-[9px] text-[#57544a] dark:text-[#a39e8a] font-bold">
+                <span className="block text-[9px] font-bold nier-photo-exif-label">
                   SENSOR / RESOLUTION
                 </span>
-                <span className="font-semibold text-[#4e4b42] dark:text-[#dad4bb]">
+                <span className="font-semibold nier-photo-exif-value">
                   {activePhoto.resolution} PX
                 </span>
               </div>
 
               <div>
-                <span className="block text-[9px] text-[#57544a] dark:text-[#a39e8a] font-bold">
+                <span className="block text-[9px] font-bold nier-photo-exif-label">
                   HARDWARE
                 </span>
-                <span className="font-semibold text-[#4e4b42] dark:text-[#dad4bb]">
+                <span className="font-semibold nier-photo-exif-value">
                   {activePhoto.camera} ({activePhoto.software})
                 </span>
               </div>
 
               <div>
-                <span className="block text-[9px] text-[#57544a] dark:text-[#a39e8a] font-bold">
+                <span className="block text-[9px] font-bold nier-photo-exif-label">
                   APERTURE / SIZE
                 </span>
-                <span className="font-semibold text-[#89a87d]">
+                <span className="font-semibold nier-photo-exif-accent">
                   {activePhoto.aperture} · {activePhoto.fileSize}
                 </span>
               </div>
@@ -207,7 +207,7 @@ export const PhotosView: React.FC = () => {
 
             {/* Modal Bottom Actions */}
             <div className="flex items-center justify-between pt-2 border-t border-[#b4af9a]/60 dark:border-[#444138]/60 text-[11px]">
-              <span className="text-[#57544a] dark:text-[#a39e8a]">
+              <span className="nier-photo-nav-text">
                 NAVIGATE: [← / →] · [{selectedPhotoIndex! + 1} / {photos.length}] · ESCAPE: [CLOSE]
               </span>
 
@@ -215,7 +215,7 @@ export const PhotosView: React.FC = () => {
                 href={activePhoto.src}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#4e4b42] text-[#dad4bb] dark:bg-[#dad4bb] dark:text-[#23221e] hover:opacity-90 transition-opacity font-bold"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 border font-bold nier-photo-raw-btn"
               >
                 <span>OPEN FULL RAW ASSET</span>
                 <ExternalLink className="w-3 h-3" />

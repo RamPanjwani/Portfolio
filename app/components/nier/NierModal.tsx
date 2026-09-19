@@ -46,7 +46,7 @@ export const NierModal: React.FC<NierModalProps> = ({
       onClick={onClose}
     >
       <div
-        className={`relative w-full ${maxWidth} ${maxHeight} bg-[#dad4bb] border-2 border-[#b4af9a] shadow-[6px_6px_0px_#57544a] p-4 sm:p-5 font-mono space-y-4 overflow-y-auto ${className}`}
+        className={`relative w-full ${maxWidth} ${maxHeight} nier-modal-dialog border-2 shadow-[6px_6px_0px_#57544a] p-4 sm:p-5 font-mono space-y-4 overflow-y-auto ${className}`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header Bar */}
@@ -54,7 +54,7 @@ export const NierModal: React.FC<NierModalProps> = ({
           <div className="flex items-center justify-between pb-2 border-b border-[#b4af9a]">
             <div className="flex items-center gap-2 min-w-0">
               <span className="w-2.5 h-2.5 bg-[#cd664d] shrink-0" />
-              <div className="text-sm font-bold text-[#3f3d36] truncate">
+              <div className="text-sm font-bold truncate">
                 {title}
               </div>
             </div>
@@ -63,7 +63,7 @@ export const NierModal: React.FC<NierModalProps> = ({
                 onClose();
                 nierAudio.playSelect();
               }}
-              className="p-1 border border-[#b4af9a] bg-[#eae5d2] hover:bg-[#dad4bb] transition-colors text-[#3f3d36] shrink-0 ml-2 cursor-pointer"
+              className="p-1 border nier-modal-close-btn shrink-0 ml-2 cursor-pointer"
               title="Close Dialog (Esc)"
             >
               <X className="w-4 h-4" />
@@ -75,7 +75,7 @@ export const NierModal: React.FC<NierModalProps> = ({
               onClose();
               nierAudio.playSelect();
             }}
-            className="absolute top-2.5 right-2.5 z-20 p-1 border border-[#b4af9a] bg-[#eae5d2] hover:bg-[#dad4bb] transition-colors text-[#3f3d36] cursor-pointer"
+            className="absolute top-2.5 right-2.5 z-20 p-1 border nier-modal-close-btn cursor-pointer"
             title="Close Dialog (Esc)"
           >
             <X className="w-4 h-4" />
