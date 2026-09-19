@@ -819,3 +819,170 @@ html, body {
     background-size: auto;
   }
 }
+
+/* NieR Photo Card Component - Interactive Theme Inversion:
+   Light mode: light by default -> hover turns dark.
+   Dark mode: dark by default -> hover turns light. */
+.nier-photo-card {
+  background-color: #eae5d2;
+  border-color: #b4af9a;
+  color: #3f3d36;
+  box-shadow: 3px 3px 0px #c8c3b0;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nier-photo-card:hover {
+  background-color: #4e4b42;
+  border-color: #4e4b42;
+  color: #dad4bb;
+}
+
+.nier-photo-card .nier-photo-header,
+.nier-photo-card .nier-photo-footer {
+  border-color: rgba(180, 175, 154, 0.6);
+  color: #57544a;
+  transition: all 0.2s ease;
+}
+
+.nier-photo-card:hover .nier-photo-header,
+.nier-photo-card:hover .nier-photo-footer {
+  border-color: rgba(218, 212, 187, 0.3);
+  color: rgba(218, 212, 187, 0.9);
+}
+
+.nier-photo-card .nier-photo-title {
+  color: #3f3d36;
+  transition: color 0.2s ease;
+}
+
+.nier-photo-card:hover .nier-photo-title {
+  color: #dad4bb;
+}
+
+.nier-photo-card .nier-photo-accent {
+  color: #8a8575;
+  transition: color 0.2s ease;
+}
+
+.nier-photo-card:hover .nier-photo-accent {
+  color: #cd664d;
+}
+
+.nier-photo-card .nier-photo-img-wrap {
+  background-color: #d1cdb7;
+  border-color: rgba(180, 175, 154, 0.6);
+  transition: border-color 0.2s ease;
+}
+
+.nier-photo-card:hover .nier-photo-img-wrap {
+  border-color: rgba(218, 212, 187, 0.5);
+}
+
+.nier-photo-card .nier-photo-size {
+  color: #3f3d36;
+  transition: color 0.2s ease;
+}
+
+.nier-photo-card:hover .nier-photo-size {
+  color: #89a87d;
+}
+
+.nier-photo-card .nier-photo-inspect-badge {
+  background-color: #dad4bb;
+  color: #23221e;
+  border-color: #23221e;
+}
+
+/* DARK MODE OVERRIDES */
+.dark .nier-photo-card {
+  background-color: #23221e;
+  border-color: #444138;
+  color: #dad4bb;
+  box-shadow: 2px 2px 0px #33312a;
+}
+
+.dark .nier-photo-card:hover {
+  background-color: #dad4bb;
+  border-color: #dad4bb;
+  color: #23221e;
+}
+
+.dark .nier-photo-card .nier-photo-header,
+.dark .nier-photo-card .nier-photo-footer {
+  border-color: #444138;
+  color: #a39e8a;
+}
+
+.dark .nier-photo-card:hover .nier-photo-header,
+.dark .nier-photo-card:hover .nier-photo-footer {
+  border-color: rgba(35, 34, 30, 0.3);
+  color: rgba(35, 34, 30, 0.9);
+}
+
+.dark .nier-photo-card .nier-photo-title {
+  color: #dad4bb;
+}
+
+.dark .nier-photo-card:hover .nier-photo-title {
+  color: #23221e;
+}
+
+.dark .nier-photo-card .nier-photo-accent {
+  color: #666666;
+}
+
+.dark .nier-photo-card:hover .nier-photo-accent {
+  color: #cd664d;
+}
+
+.dark .nier-photo-card .nier-photo-img-wrap {
+  background-color: #181816;
+  border-color: #444138;
+}
+
+.dark .nier-photo-card:hover .nier-photo-img-wrap {
+  border-color: rgba(35, 34, 30, 0.5);
+}
+
+.dark .nier-photo-card .nier-photo-size {
+  color: #89a87d;
+}
+
+.dark .nier-photo-card:hover .nier-photo-size {
+  color: #23221e;
+}
+
+.dark .nier-photo-card .nier-photo-inspect-badge {
+  background-color: #23221e;
+  color: #dad4bb;
+  border-color: #dad4bb;
+}
+
+.nier-photo-load-btn {
+  background-color: #eae5d2;
+  border-color: #4e4b42;
+  color: #3f3d36;
+  box-shadow: 3px 3px 0px #b4af9a;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nier-photo-load-btn:hover {
+  background-color: #4e4b42;
+  border-color: #4e4b42;
+  color: #dad4bb;
+}
+
+.dark .nier-photo-load-btn {
+  background-color: #23221e;
+  border-color: #dad4bb;
+  color: #dad4bb;
+  box-shadow: 2px 2px 0px #444138;
+}
+
+.dark .nier-photo-load-btn:hover {
+  background-color: #dad4bb;
+  border-color: #dad4bb;
+  color: #23221e;
+}
+
+

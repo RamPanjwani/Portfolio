@@ -72,26 +72,26 @@ export const PhotosView: React.FC = () => {
           <div
             key={photo.id}
             onClick={() => openLightbox(index)}
-            className="group relative border border-[#b4af9a] dark:border-[#444138] bg-[#eae5d2] hover:bg-[#4e4b42] hover:border-[#4e4b42] dark:bg-[#23221e] dark:hover:bg-[#dad4bb] dark:hover:border-[#dad4bb] p-2.5 sm:p-3 shadow-[3px_3px_0px_#c8c3b0] dark:shadow-[2px_2px_0px_#33312a] transition-all duration-200 cursor-pointer flex flex-col justify-between active:scale-[0.99]"
+            className="group relative border p-2.5 sm:p-3 nier-photo-card cursor-pointer flex flex-col justify-between active:scale-[0.99]"
           >
             {/* Corner Decorative YoRHa Accents */}
-            <span className="absolute top-1 left-1 text-[8px] text-[#8a8575] dark:text-[#666] group-hover:text-[#cd664d] transition-colors">
+            <span className="absolute top-1 left-1 text-[8px] nier-photo-accent">
               +
             </span>
-            <span className="absolute top-1 right-1 text-[8px] text-[#8a8575] dark:text-[#666] group-hover:text-[#cd664d] transition-colors">
+            <span className="absolute top-1 right-1 text-[8px] nier-photo-accent">
               +
             </span>
 
             {/* Top Telemetry Header */}
-            <div className="flex items-center justify-between text-[9px] pb-1.5 px-0.5 border-b border-[#b4af9a]/60 dark:border-[#444138] group-hover:border-[#dad4bb]/30 dark:group-hover:border-[#23221e]/30 text-[#57544a] group-hover:text-[#dad4bb]/90 dark:text-[#a39e8a] dark:group-hover:text-[#23221e]/90 transition-colors">
-              <span className="font-bold text-[#3f3d36] group-hover:text-[#dad4bb] dark:text-[#dad4bb] dark:group-hover:text-[#23221e] transition-colors">
+            <div className="flex items-center justify-between text-[9px] pb-1.5 px-0.5 border-b nier-photo-header">
+              <span className="font-bold nier-photo-title">
                 {photo.id}
               </span>
               <span>{photo.date} · {photo.time}</span>
             </div>
 
             {/* Image Container with Hover Scanlines & Glitch */}
-            <div className="relative overflow-hidden aspect-[4/3] my-2 bg-[#d1cdb7] dark:bg-[#181816] border border-[#b4af9a]/60 dark:border-[#444138] group-hover:border-[#dad4bb]/50 dark:group-hover:border-[#23221e]/50 transition-colors">
+            <div className="relative overflow-hidden aspect-[4/3] my-2 border nier-photo-img-wrap">
               <img
                 src={photo.src}
                 alt={photo.title}
@@ -101,7 +101,7 @@ export const PhotosView: React.FC = () => {
 
               {/* Hover Overlay Hint */}
               <div className="absolute inset-0 bg-black/25 dark:bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span className="bg-[#dad4bb] text-[#23221e] dark:bg-[#23221e] dark:text-[#dad4bb] px-2 py-1 text-[10px] font-bold border border-[#23221e] dark:border-[#dad4bb] shadow-[2px_2px_0px_#23221e] flex items-center gap-1">
+                <span className="px-2 py-1 text-[10px] font-bold border shadow-[2px_2px_0px_currentColor] flex items-center gap-1 nier-photo-inspect-badge">
                   <Maximize2 className="w-3 h-3" />
                   <span>INSPECT</span>
                 </span>
@@ -109,9 +109,9 @@ export const PhotosView: React.FC = () => {
             </div>
 
             {/* Bottom Meta Data */}
-            <div className="pt-1.5 border-t border-[#b4af9a]/60 dark:border-[#444138] group-hover:border-[#dad4bb]/30 dark:group-hover:border-[#23221e]/30 text-[9px] text-[#57544a] group-hover:text-[#dad4bb]/90 dark:text-[#a39e8a] dark:group-hover:text-[#23221e]/90 flex items-center justify-between transition-colors">
+            <div className="pt-1.5 border-t nier-photo-footer text-[9px] flex items-center justify-between">
               <span className="truncate">{photo.camera} · {photo.aperture}</span>
-              <span className="text-[#3f3d36] group-hover:text-[#89a87d] dark:text-[#89a87d] dark:group-hover:text-[#23221e] font-bold transition-colors">
+              <span className="font-bold nier-photo-size">
                 {photo.fileSize}
               </span>
             </div>
@@ -127,7 +127,7 @@ export const PhotosView: React.FC = () => {
               nierAudio.playSelect();
               setVisibleCount((prev) => prev + 12);
             }}
-            className="px-6 py-2.5 bg-[#eae5d2] hover:bg-[#4e4b42] hover:text-[#dad4bb] dark:bg-[#23221e] dark:hover:bg-[#dad4bb] dark:hover:text-[#23221e] text-[#3f3d36] dark:text-[#dad4bb] border border-[#4e4b42] dark:border-[#dad4bb] font-bold text-xs tracking-wider shadow-[3px_3px_0px_#b4af9a] dark:shadow-[2px_2px_0px_#444138] transition-all active:scale-[0.98] cursor-pointer"
+            className="px-6 py-2.5 nier-photo-load-btn border font-bold text-xs tracking-wider transition-all active:scale-[0.98] cursor-pointer"
           >
             LOAD MORE RECORDS [{photos.length - visibleCount} REMAINING]
           </button>
