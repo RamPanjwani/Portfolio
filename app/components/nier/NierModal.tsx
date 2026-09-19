@@ -70,16 +70,18 @@ export const NierModal: React.FC<NierModalProps> = ({
             </button>
           </div>
         ) : (
-          <button
-            onClick={() => {
-              onClose();
-              nierAudio.playSelect();
-            }}
-            className="absolute top-2.5 right-2.5 z-20 p-1 border nier-modal-close-btn cursor-pointer"
-            title="Close Dialog (Esc)"
-          >
-            <X className="w-4 h-4" />
-          </button>
+          <div className="flex justify-end pb-2 sm:pb-3">
+            <button
+              onClick={() => {
+                onClose();
+                nierAudio.playSelect();
+              }}
+              className="p-1 border nier-modal-close-btn cursor-pointer"
+              title="Close Dialog (Esc)"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
         )}
 
         {children}
