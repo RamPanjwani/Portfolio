@@ -206,11 +206,7 @@ export const PhotosView: React.FC = () => {
             </div>
 
             {/* Modal Bottom Actions */}
-            <div className="flex items-center justify-between pt-2 border-t border-[#b4af9a]/60 dark:border-[#444138]/60 text-[11px]">
-              <span className="nier-photo-nav-text">
-                NAVIGATE: [← / →] · [{selectedPhotoIndex! + 1} / {photos.length}] · ESCAPE: [CLOSE]
-              </span>
-
+            <div className="flex items-center justify-end pt-2 border-t border-[#b4af9a]/60 dark:border-[#444138]/60 text-[11px]">
               <a
                 href={activePhoto.src}
                 target="_blank"

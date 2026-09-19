@@ -985,9 +985,9 @@ html, body {
   color: #23221e;
 }
 
-/* NieR Photo Inspect Modal Telemetry - White components & dark text in light mode */
+/* NieR Photo Inspect Modal Telemetry - Authentic NieR light palette */
 .nier-photo-exif-strip {
-  background-color: #ffffff;
+  background-color: #eae5d2;
   border-color: #b4af9a;
   box-shadow: 2px 2px 0px rgba(180, 175, 154, 0.4);
 }
@@ -997,16 +997,16 @@ html, body {
 }
 
 .nier-photo-exif-value {
-  color: #23221e;
+  color: #3f3d36;
 }
 
 .nier-photo-exif-accent {
-  color: #2e6320;
+  color: #4e4b42;
 }
 
 .nier-photo-raw-btn {
-  background-color: #ffffff;
-  color: #23221e;
+  background-color: #eae5d2;
+  color: #3f3d36;
   border-color: #4e4b42;
   box-shadow: 2px 2px 0px #b4af9a;
   transition: all 0.2s ease;
@@ -1019,8 +1019,8 @@ html, body {
 }
 
 .nier-photo-nav-btn {
-  background-color: #ffffff;
-  color: #23221e;
+  background-color: #eae5d2;
+  color: #3f3d36;
   border-color: #b4af9a;
   transition: all 0.2s ease;
 }
@@ -1031,13 +1031,9 @@ html, body {
   border-color: #4e4b42;
 }
 
-.nier-photo-nav-text {
-  color: #57544a;
-}
-
 .nier-modal-close-btn {
-  background-color: #ffffff;
-  color: #23221e;
+  background-color: #eae5d2;
+  color: #3f3d36;
   border-color: #b4af9a;
   transition: all 0.2s ease;
 }
