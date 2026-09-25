@@ -67,6 +67,20 @@ export const PhotosView: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedPhotoIndex, photos.length]);
 
+  // Proactively prefetch adjacent photos in background for instant, snappy navigation
+  useEffect(() => {
+    if (selectedPhotoIndex === null) return;
+
+    const nextIdx = (selectedPhotoIndex + 1) % photos.length;
+    const prevIdx = (selectedPhotoIndex - 1 + photos.length) % photos.length;
+    const nextNextIdx = (selectedPhotoIndex + 2) % photos.length;
+
+    [nextIdx, prevIdx, nextNextIdx].forEach((idx) => {
+      const img = new Image();
+      img.src = getPhotoLightbox(photos[idx].src);
+    });
+  }, [selectedPhotoIndex, photos]);
+
   return (
     <div className="space-y-6 select-none font-mono">
       {/* Title Header */}
@@ -140,10 +154,19 @@ export const PhotosView: React.FC = () => {
           <div className="space-y-4 font-mono text-xs">
             {/* Main Lightbox Display */}
             <div className="relative bg-[#181816] border border-[#b4af9a] dark:border-[#444138] overflow-hidden flex items-center justify-center min-h-[300px] max-h-[70vh]">
+              {/* Instant low-res backdrop from already-cached thumbnail */}
               <img
+                src={getPhotoThumbnail(activePhoto.src)}
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 w-full h-full object-contain filter blur-sm scale-105 opacity-40 pointer-events-none select-none"
+              />
+
+              <img
+                key={activePhoto.id}
                 src={getPhotoLightbox(activePhoto.src)}
                 alt={activePhoto.title}
-                className="max-h-[68vh] w-auto object-contain mx-auto"
+                className="relative z-10 max-h-[68vh] w-auto object-contain mx-auto"
               />
 
               {/* Prev / Next Navigation Arrows */}

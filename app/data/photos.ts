@@ -29,14 +29,14 @@ export function getPhotoThumbnail(src: string): string {
 }
 
 /**
- * Returns high-fidelity image for lightbox viewing (auto-WebP, 2560px width, 95% quality)
+ * Returns high-fidelity image for lightbox viewing (auto-WebP, 1920px width, 90% quality)
  */
 export function getPhotoLightbox(src: string): string {
   if (src.startsWith('http')) {
     const sep = src.includes('?') ? '&' : '?';
-    return `${src}${sep}tr=w-2560,f-auto,q-95`;
+    return `${src}${sep}tr=w-1920,f-auto,q-90`;
   }
-  return `${IMAGEKIT_ENDPOINT}${src}?tr=w-2560,f-auto,q-95`;
+  return `${IMAGEKIT_ENDPOINT}${src}?tr=w-1920,f-auto,q-90`;
 }
 
 /**
