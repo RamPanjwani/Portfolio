@@ -15,6 +15,40 @@ export interface PhotoItem {
   fileSize: string;
 }
 
+export const IMAGEKIT_ENDPOINT = 'https://ik.imagekit.io/1h1eii8pl';
+
+/**
+ * Returns optimized thumbnail for gallery cards (auto-WebP, 800px width, 85% quality)
+ */
+export function getPhotoThumbnail(src: string): string {
+  if (src.startsWith('http')) {
+    const sep = src.includes('?') ? '&' : '?';
+    return `${src}${sep}tr=w-800,f-auto,q-85`;
+  }
+  return `${IMAGEKIT_ENDPOINT}${src}?tr=w-800,f-auto,q-85`;
+}
+
+/**
+ * Returns high-fidelity image for lightbox viewing (auto-WebP, 2560px width, 95% quality)
+ */
+export function getPhotoLightbox(src: string): string {
+  if (src.startsWith('http')) {
+    const sep = src.includes('?') ? '&' : '?';
+    return `${src}${sep}tr=w-2560,f-auto,q-95`;
+  }
+  return `${IMAGEKIT_ENDPOINT}${src}?tr=w-2560,f-auto,q-95`;
+}
+
+/**
+ * Returns maximum resolution raw asset (24.5 MP) without downscaling
+ */
+export function getPhotoRaw(src: string): string {
+  if (src.startsWith('http')) {
+    return src;
+  }
+  return `${IMAGEKIT_ENDPOINT}${src}`;
+}
+
 export const INITIAL_PHOTOS: PhotoItem[] = [
   {
     "id": "OPT-001",

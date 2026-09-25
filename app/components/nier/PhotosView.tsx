@@ -2,7 +2,13 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { NierSectionHeader } from './NierSectionHeader';
-import { INITIAL_PHOTOS, PhotoItem } from '../../data/photos';
+import {
+  INITIAL_PHOTOS,
+  PhotoItem,
+  getPhotoThumbnail,
+  getPhotoLightbox,
+  getPhotoRaw,
+} from '../../data/photos';
 import { NierModal } from './NierModal';
 import { nierAudio } from './NierAudio';
 import {
@@ -91,7 +97,7 @@ export const PhotosView: React.FC = () => {
             {/* Image Container with Hover Scanlines & Glitch */}
             <div className="relative overflow-hidden aspect-[4/3] border nier-photo-img-wrap">
               <img
-                src={photo.src}
+                src={getPhotoThumbnail(photo.src)}
                 alt={photo.title}
                 loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -135,7 +141,7 @@ export const PhotosView: React.FC = () => {
             {/* Main Lightbox Display */}
             <div className="relative bg-[#181816] border border-[#b4af9a] dark:border-[#444138] overflow-hidden flex items-center justify-center min-h-[300px] max-h-[70vh]">
               <img
-                src={activePhoto.src}
+                src={getPhotoLightbox(activePhoto.src)}
                 alt={activePhoto.title}
                 className="max-h-[68vh] w-auto object-contain mx-auto"
               />
@@ -208,7 +214,7 @@ export const PhotosView: React.FC = () => {
             {/* Modal Bottom Actions */}
             <div className="flex items-center justify-end pt-2 border-t border-[#b4af9a]/60 dark:border-[#444138]/60 text-[11px]">
               <a
-                href={activePhoto.src}
+                href={getPhotoRaw(activePhoto.src)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 border font-bold nier-photo-raw-btn"
